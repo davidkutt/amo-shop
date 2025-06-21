@@ -1,49 +1,41 @@
-import React, { useState } from 'react';
-import { View, SafeAreaView, Alert, FlatList } from 'react-native';
+import React from 'react';
+import { FlatList, SafeAreaView, View } from 'react-native';
 import { ProductCard } from '../components/organisms/ProductCard';
-import { Header } from '../components/organisms/Header'; // We will still use our Header component
-import { Text } from '../components/atoms/Text';
-import { SearchBar } from '../components/molecules/SearchBar';
+import { FilterBar } from '../components/organisms/FilterBar';
+// We would need to create/restyle the Header and SubNav components next
+// import { Header } from '../components/organisms/Header';
 
-// ... (Sample product data remains the same)
+// Sample data updated to match the new props
 const products = [
-  { id: '1', name: 'Classic White Tee', price: 29.99, imageUrl: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500', rating: 4.5, reviewCount: 112 },
-  { id: '2', name: 'Denim Jeans', price: 79.50, imageUrl: 'https://images.unsplash.com/photo-1602293589910-4535a9a7c8c1?w=500', rating: 4.8, reviewCount: 254 },
+  { id: '1', name: 'Hamptons Worn-Out Sneaker', price: '775 €', imageUrl: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500', preOrderText: 'Jetzt vorbestellen', colorCount: 3 },
+  { id: '2', name: 'Hamptons Medium Worn-Out Sneaker', price: '775 €', imageUrl: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500', preOrderText: 'Jetzt vorbestellen' },
+  { id: '3', name: 'Another Sneaker', price: '850 €', imageUrl: 'https://images.unsplash.com/photo-1597045566677-8cf032ed6634?w=500' },
+  { id: '4', name: 'Dark Sneaker', price: '695 €', imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500' },
 ];
 
 
-const ProductGridScreen = () => {
-  const [query, setQuery] = useState('');
-
+const ProductGridScreen = ({navigation}) => {
   return (
-    // Use a solid, neutral background color for the screen
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#D1D5DB' }}>
-      {/* The Header is now a simple, static component */}
-      <SearchBar
-        value={query}
-        onChangeText={setQuery}
-        onClear={() => setQuery('')}
-      />
-      <Header title="New Arrivals" />
+    // The screen background is plain white
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+      {/* We would place our restyled Header and SubNav components here */}
+      <FilterBar productCount={products.length} />
 
-      <View style={{ paddingHorizontal: 10 }}>
-        <FlatList
-          data={products}
-          renderItem={({ item }) => (
-            <ProductCard
-              product={item}
-              onPress={() => Alert.alert('Navigate to Product', item.name)}
-              containerClassName="m-2"
-            />
-          )}
-          keyExtractor={(item) => item.id}
-          numColumns={2}
-          contentContainerStyle={{
-            justifyContent: 'space-around',
-            paddingTop: 10, // Adjust padding as needed
-          }}
-        />
-      </View>
+      <FlatList
+        data={products}
+        renderItem={({ item, index }) => (
+          <ProductCard
+            product={item}
+            onPress={() =>     navigation.navigate('ProductDetail', { productId: item.id })
+            }
+            index={index} // Pass the index to handle borders
+          />
+        )}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        // Remove all content container styling to let cards sit flush
+        contentContainerStyle={{}}
+      />
     </SafeAreaView>
   );
 };

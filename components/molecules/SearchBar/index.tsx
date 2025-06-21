@@ -5,45 +5,39 @@ import { Icon } from '../../atoms/Icon';
 
 interface SearchBarProps extends TextInputProps {
   onClear?: () => void;
-  containerClassName?: string;
 }
 
+/**
+ * A SearchBar component styled in the stark, minimalist aesthetic.
+ * It's designed to sit on a white background and is defined by its border.
+ */
 export const SearchBar: React.FC<SearchBarProps> = ({
                                                       value,
                                                       onClear,
-                                                      containerClassName = '',
                                                       ...rest
                                                     }) => {
   const showClearButton = value && value.length > 0;
 
   return (
-    // This wrapper holds the SearchBar and its hard shadow
-    <View className={`w-full ${containerClassName}`}>
-      {/* This View acts as the hard, offset shadow */}
-      <View className="absolute top-1 left-1 w-full h-full bg-black" />
-
-      {/* This is the main SearchBar container */}
-      <View
-        className="flex-row items-center w-full bg-[#F0F0E0] border-2 border-black"
-      >
+    <View className="w-full bg-white px-4 py-2 border-b border-black">
+      <View className="flex-row items-center w-full bg-white border border-black p-2">
         {/* Search Icon */}
-        <View className="pl-4 pr-2">
-          <Icon name="search" size={24} color="black" />
+        <View className="pr-2">
+          <Icon name="search" size={22} color="black" />
         </View>
 
-        {/* --- THIS LINE IS FIXED --- */}
         <Input
-          className="flex-1 border-0 bg-transparent py-3 text-base h-12 text-black" // Changed p-0 to py-3
-          placeholder="Search products..."
-          placeholderTextColor="#333333"
+          className="flex-1 border-0 bg-transparent text-base h-8 p-0 text-black"
+          placeholder="Search..."
+          placeholderTextColor="#6b7281" // A standard gray
           value={value}
           {...rest}
         />
 
-        {/* Clear Button appears only when there's text */}
+        {/* Clear Button (appears only when there's text) */}
         {showClearButton && (
-          <TouchableOpacity onPress={onClear} className="p-4">
-            <Icon name="close" size={24} color="black" />
+          <TouchableOpacity onPress={onClear} className="pl-2">
+            <Icon name="close" size={22} color="black" />
           </TouchableOpacity>
         )}
       </View>
