@@ -21,12 +21,12 @@ const CartItem = ({ item }) => (
     </View>
     <View className="flex-1 ml-4">
       <Text className="text-black uppercase font-bold text-base">{item.name}</Text>
-      <Text className="text-black text-sm my-1">Size: M</Text>
+      <Text className="text-black text-sm my-1">Größe: M</Text>
       <Text className="text-black font-semibold text-lg">{item.price}</Text>
     </View>
     <View className="items-center">
       <Text className="text-black text-lg font-bold">{item.quantity}</Text>
-      <TouchableOpacity onPress={() => Alert.alert('Remove item')} className="mt-2 p-1">
+      <TouchableOpacity onPress={() => {}} className="mt-2 p-1">
         <Icon name="trash" size={20} color="black" />
       </TouchableOpacity>
     </View>
@@ -65,7 +65,7 @@ const ShoppingCartScreen = () => {
       {/* For now, we'll use a simple text header. This could be our Header component */}
       <View className="flex-row items-center justify-between p-4 border-b-2 border-black">
         <Text className="text-black text-center font-bold text-xl uppercase tracking-widest flex-1">
-          Shopping Bag
+          Dein Warenkorb
         </Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="close" size={24} color="black" />
@@ -78,7 +78,7 @@ const ShoppingCartScreen = () => {
           {items.length > 0 ? (
             items.map((item) => <CartItem key={item.id} item={item} />)
           ) : (
-            <Text className="text-center p-8 text-gray-500">Your bag is empty.</Text>
+            <Text className="text-center p-8 text-gray-500">Dein Warenkorb ist leer.</Text>
           )}
         </View>
 
@@ -86,15 +86,15 @@ const ShoppingCartScreen = () => {
         {items.length > 0 && (
           <View className="p-4 mt-4">
             <View className="flex-row justify-between mb-2">
-              <Text className="text-black uppercase text-base">Subtotal</Text>
+              <Text className="text-black uppercase text-base">PREIS</Text>
               <Text className="text-black font-semibold text-base">{subtotal} €</Text>
             </View>
             <View className="flex-row justify-between mb-4">
-              <Text className="text-black uppercase text-base">Shipping</Text>
-              <Text className="text-black font-semibold text-base">FREE</Text>
+              <Text className="text-black uppercase text-base">Versand</Text>
+              <Text className="text-black font-semibold text-base">KOSTENLOS</Text>
             </View>
             <View className="flex-row justify-between pt-4 border-t-2 border-black">
-              <Text className="text-black uppercase font-bold text-lg">Total</Text>
+              <Text className="text-black uppercase font-bold text-lg">Gesamt</Text>
               <Text className="text-black font-bold text-lg">{total} €</Text>
             </View>
           </View>
@@ -106,7 +106,7 @@ const ShoppingCartScreen = () => {
         <View className="p-4 border-t-2 border-black">
           {/* --- THIS IS THE CHANGE --- */}
           <Button
-            title="Proceed to Checkout"
+            title="Weiter zum Checkout"
             onPress={() => navigation.navigate('CheckoutScreen')}
             className="bg-black border-black w-full"
             textClassName="text-white"

@@ -4,34 +4,27 @@ import { Text } from '../../atoms/Text';
 import { Icon, IconName } from '../../atoms/Icon'; // Make sure to export IconName from your Icon component
 
 /**
- * A custom Tabbar component styled in a stark, minimalist aesthetic.
- * Designed to be used with React Navigation's Bottom Tab Navigator.
+ * A custom Tabbar component with enhanced styling for the active tab.
  */
 export const Tabbar = ({ state, descriptors, navigation }) => {
   return (
     // The main container for the tab bar
     <View className="bg-white border-t-2 border-black">
       <SafeAreaView>
-        <View className="flex-row justify-around items-center h-16">
+        <View className="mb-2 flex-row justify-around items-center h-16">
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
 
-            // Define the label for the tab. Fallback to the route name.
             const label =
               options.tabBarLabel !== undefined
                 ? options.tabBarLabel
                 : options.title !== undefined
-                ? options.title
-                : route.name;
+                  ? options.title
+                  : route.name;
 
-            // Check if the current tab is focused (active)
             const isFocused = state.index === index;
-
-            // Define the icon for the tab
-            // This relies on a naming convention where the route name matches an icon name
             const iconName = route.name.toLowerCase() as IconName;
 
-            // Handle press events
             const onPress = () => {
               const event = navigation.emit({
                 type: 'tabPress',
@@ -51,6 +44,12 @@ export const Tabbar = ({ state, descriptors, navigation }) => {
               });
             };
 
+            // --- THIS IS THE CHANGE ---
+            // We'll use more distinct styles for the focused state.
+            const iconColor = isFocused ? 'black' : '#A1A1AA';
+            const textColor = isFocused ? 'text-black' : 'text-gray-400';
+            const fontWeight = isFocused ? 'font-bold' : 'font-semibold';
+
             return (
               <TouchableOpacity
                 key={route.key}
@@ -60,22 +59,29 @@ export const Tabbar = ({ state, descriptors, navigation }) => {
                 testID={options.tabBarTestID}
                 onPress={onPress}
                 onLongPress={onLongPress}
-                className="flex-1 items-center justify-center py-2"
+                className="flex-1 items-center justify-center py-2 h-full"
               >
                 <Icon
                   name={iconName}
                   size={24}
-                  // Icon is black if focused, otherwise gray
-                  color={isFocused ? 'black' : '#A1A1AA'}
+                  color={iconColor}
                 />
                 <Text
                   className={`
-                    mt-1 uppercase text-xs font-semibold
-                    ${isFocused ? 'text-black' : 'text-gray-400'}
+                    mt-1 uppercase text-xs
+                    ${textColor}
+                    ${fontWeight}
                   `}
                 >
                   {label}
                 </Text>
+
+                {/* --- THIS IS THE NEW INDICATOR --- */}
+                {/* A small black view that only appears if the tab is focused */}
+                {isFocused && (
+                  <View className="absolute bottom-0 h-1 w-8 bg-black" />
+                )}
+
               </TouchableOpacity>
             );
           })}

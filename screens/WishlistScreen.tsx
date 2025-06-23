@@ -30,11 +30,14 @@ const WishlistScreen = () => {
   // Filter all products to get only the ones in the wishlist
   const favoritedProducts = allProducts.filter(product => wishlistItems.includes(product.id));
 
+  // --- THIS IS THE CHANGE ---
+  // This function now navigates to the correct screen within the correct stack.
   const handleProductPress = (product) => {
-    // Navigate to the ProductDetail screen from the correct stack
-    // This assumes the product grid and detail screens are in a stack named 'GridStack' or similar
-    // For simplicity, we'll use an alert.
-    Alert.alert('Navigate', `To details for ${product.name}`);
+    // Navigate to the Suche tab, and within that tab's stack, go to the 'ProductDetail' screen.
+    navigation.navigate('Suche', {
+      screen: 'ProductDetail',
+      params: { productId: product.id },
+    });
   };
 
   return (
@@ -44,7 +47,7 @@ const WishlistScreen = () => {
         ListHeaderComponent={() => (
           <View className="p-4 border-b-2 border-black">
             <Text className="text-black uppercase font-bold text-xl text-center tracking-widest">
-              My Wishlist
+              Meine Merkliste
             </Text>
           </View>
         )}
@@ -61,7 +64,7 @@ const WishlistScreen = () => {
         // Show a message if the wishlist is empty
         ListEmptyComponent={() => (
           <View className="flex-1 justify-center items-center mt-20">
-            <Text className="text-gray-500">Your wishlist is empty.</Text>
+            <Text className="text-gray-500">Deine Merkliste ist leer.</Text>
           </View>
         )}
       />

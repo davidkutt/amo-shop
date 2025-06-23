@@ -44,7 +44,7 @@ const AccountScreen = () => {
           />
           <AccountLink
             label="My Wishlist"
-            onPress={() => navigation.navigate('Heart')} // Navigates to the Heart tab
+            onPress={() => navigation.navigate('Merkliste')} // Navigates to the Heart tab
           />
           <AccountLink
             label="Settings"
@@ -56,7 +56,7 @@ const AccountScreen = () => {
         <View className="mt-8 px-4">
           <AccountLink
             label="Log Out"
-            onPress={() => Alert.alert('Log Out', 'User has been logged out.')}
+            onPress={() => {}}
           />
         </View>
       </ScrollView>

@@ -55,7 +55,7 @@ const FilterScreen = () => {
       {/* --- Screen Header --- */}
       <View className="flex-row items-center justify-between p-4 border-b-2 border-black">
         <Text className="text-black text-center font-bold text-xl uppercase tracking-widest">
-          Filter & Sort
+          Filter & Sortierung
         </Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="close" size={24} color="black" />
@@ -66,17 +66,17 @@ const FilterScreen = () => {
         {/* --- Sort By Section --- */}
         <FilterSection title="Sort By">
           <RadioItem
-            label="Newest"
+            label="Neueste"
             selected={sortOption === 'Newest'}
             onPress={() => setSortOption('Newest')}
           />
           <RadioItem
-            label="Price: High to Low"
+            label="Preis: absteigend"
             selected={sortOption === 'High to Low'}
             onPress={() => setSortOption('High to Low')}
           />
           <RadioItem
-            label="Price: Low to High"
+            label="Preis: aufsteigend"
             selected={sortOption === 'Low to High'}
             onPress={() => setSortOption('Low to High')}
           />
@@ -85,19 +85,19 @@ const FilterScreen = () => {
         {/* --- Categories Section --- */}
         <FilterSection title="Categories">
           <Checkbox
-            label="Sneakers"
+            label="Sneaker"
             value={categories.sneakers}
             onValueChange={(val) => setCategories({ ...categories, sneakers: val })}
             className="mb-2"
           />
           <Checkbox
-            label="Boots"
+            label="Stiefel"
             value={categories.boots}
             onValueChange={(val) => setCategories({ ...categories, boots: val })}
             className="mb-2"
           />
           <Checkbox
-            label="Apparel"
+            label="Bekleidung"
             value={categories.apparel}
             onValueChange={(val) => setCategories({ ...categories, apparel: val })}
           />
@@ -106,7 +106,7 @@ const FilterScreen = () => {
         {/* --- In Stock Section --- */}
         <FilterSection title="Availability">
           <View className="flex-row items-center justify-between">
-            <Text className="text-black text-base">Show in-stock only</Text>
+            <Text className="text-black text-base">Nur Produkte auf Lager anzeigen</Text>
             <Switch value={inStockOnly} onValueChange={setInStockOnly} />
           </View>
         </FilterSection>
@@ -120,7 +120,7 @@ const FilterScreen = () => {
           {/* We now use the 'outline' variant and override the background color. */}
           {/* This ensures the text color is correctly set to black. */}
           <Button
-            title="Clear All"
+            title="Zurücksetzen"
             variant="outline"
             onPress={() => {}}
             className="bg-white w-full"
@@ -129,7 +129,7 @@ const FilterScreen = () => {
         </View>
         <View className="flex-1">
           <Button
-            title="View Results"
+            title="Suchen"
             onPress={() => navigation.goBack()}
             className="bg-black border-black w-full"
             textClassName="text-white"

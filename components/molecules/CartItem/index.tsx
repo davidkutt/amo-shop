@@ -15,7 +15,9 @@ const CartItem = ({ item }) => (
     </View>
     <View className="items-center">
       <Text className="text-black text-lg font-bold">1</Text>
-      <TouchableOpacity onPress={() => Alert.alert('Remove item')} className="mt-2 p-1">
+      <TouchableOpacity onPress={() => {
+
+      }} className="mt-2 p-1">
         <Icon name="trash" size={20} color="black" />
       </TouchableOpacity>
     </View>

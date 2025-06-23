@@ -64,7 +64,7 @@ export const Badge: React.FC<BadgeProps> = ({
 
   const badgeSizeClass = isDot
     ? 'w-2.5 h-2.5' // Smaller size for the dot variant
-    : 'min-w-[20px] h-5 px-1'; // Size for the standard variant with text
+    : 'min-w-[20px] h-[20px] px-1'; // Size for the standard variant with text
 
   return (
     <View className={`relative ${className}`}>
@@ -81,7 +81,7 @@ export const Badge: React.FC<BadgeProps> = ({
           `}
         >
           {!isDot && (
-            <Text className="text-white text-[10px] font-bold">
+            <Text className="text-white text-[11px] font-bold">
               {displayValue}
             </Text>
           )}

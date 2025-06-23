@@ -6,45 +6,45 @@ import { Button } from '../components/atoms/Button';
 import { Icon } from '../components/atoms/Icon';
 
 /**
- * A screen displayed after a successful checkout to confirm the order.
+ * Ein Bildschirm, der nach einem erfolgreichen Checkout angezeigt wird, um die Bestellung zu bestätigen.
  */
 const OrderConfirmationScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  // In a real app, the order ID would be passed from the checkout process
-  const orderId =  '10525';
+  // In einer echten App würde die Bestellnummer vom Checkout-Prozess übergeben werden
+  const orderId = '10525';
 
   const handleContinueShopping = () => {
-    // This will take the user all the way back to the first screen of the root stack (the home screen)
-   // navigation.popToTop();
+    // Dies führt den Benutzer zurück zum ersten Bildschirm des Root-Stacks (dem Startbildschirm)
+    navigation.popToTop();
     navigation.navigate('Home');
   };
 
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-center items-center p-8">
-        {/* --- Success Icon --- */}
+        {/* --- Erfolgs-Icon --- */}
         <View className="w-24 h-24 border-4 border-black rounded-full items-center justify-center">
           <Icon name="check-2" size={60} color="black" />
         </View>
 
-        {/* --- Confirmation Message --- */}
+        {/* --- Bestätigungsnachricht --- */}
         <Text className="text-black uppercase font-bold text-2xl text-center mt-8 tracking-wider">
-          Thank You For Your Order
+          Vielen Dank für Ihre Bestellung
         </Text>
         <Text className="text-black text-center text-base mt-2">
-          Your order #{orderId} has been placed.
+          Ihre Bestellung #{orderId} wurde aufgegeben.
         </Text>
         <Text className="text-black text-center text-base mt-1">
-          A confirmation email has been sent to your address.
+          Eine Bestätigungs-E-Mail wurde an Ihre E-Mail Adresse gesendet.
         </Text>
       </View>
 
-      {/* --- Continue Shopping CTA --- */}
+      {/* --- Weiter einkaufen CTA --- */}
       <View className="p-4 border-t-2 border-black">
         <Button
-          title="Continue Shopping"
+          title="Weiter einkaufen"
           onPress={handleContinueShopping}
           className="bg-black border-black w-full"
           textClassName="text-white"

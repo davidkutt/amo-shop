@@ -34,7 +34,7 @@ const AccountDetailsScreen = () => {
           <View className="mt-6">
             <Button
               title="Update Information"
-              onPress={() => Alert.alert('Success', 'Information updated.')}
+              onPress={() => {}}
               className="bg-black border-black w-full"
               textClassName="text-white"
             />
@@ -66,7 +66,7 @@ const AccountDetailsScreen = () => {
           <View className="mt-6">
             <Button
               title="Change Password"
-              onPress={() => Alert.alert('Success', 'Password changed.')}
+              onPress={() => {}}
               className="bg-black border-black w-full"
               textClassName="text-white"
             />

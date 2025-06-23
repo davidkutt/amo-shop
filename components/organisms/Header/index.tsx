@@ -1,30 +1,31 @@
 import React from 'react';
 import { View, TouchableOpacity, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import the useNavigation hook
+import { useNavigation } from '@react-navigation/native';
 import { Text } from '../../atoms/Text';
 import { Icon } from '../../atoms/Icon';
+import { Badge } from '../../molecules/Badge'; // 1. Import the Badge component
+import { useCart } from '../../../context/CartContext'; // 2. Import the useCart hook
 
 interface HeaderProps {
-  // We can define the props for clarity
   back?: boolean;
 }
 
 /**
- * A context-aware Header component that can display a back button or default menu actions.
- * It uses the useNavigation hook to control navigation actions.
+ * A context-aware Header component that displays cart item count.
  */
 export const Header: React.FC<HeaderProps> = ({ back }) => {
-  // --- THIS IS THE FIX ---
-  // We've destructured `{ back }` from the props object.
   const navigation = useNavigation();
+  const { items } = useCart(); // 3. Get the cart items from the context
 
-  // We can determine if a "back" button should be shown by checking the navigation state.
   const canGoBack = navigation.canGoBack();
+
+  // 4. Calculate the total number of items in the cart
+  const cartItemCount = items.length;
 
   return (
     <View className="w-full bg-white px-4 py-3 border-b border-black">
       <View className="flex-row items-center justify-between">
-        {/* The condition now correctly checks the boolean `back` prop */}
+        {/* Left Icons */}
         <View className="flex-row items-center gap-x-4">
           {back && canGoBack ? (
             <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -32,10 +33,10 @@ export const Header: React.FC<HeaderProps> = ({ back }) => {
             </TouchableOpacity>
           ) : (
             <>
-              <TouchableOpacity onPress={() => Alert.alert('Menu Tapped!')}>
+              <TouchableOpacity onPress={() => {}}>
                 <Icon name="menu" size={28} color="black" />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => Alert.alert('Search Tapped!')}>
+              <TouchableOpacity onPress={() => {}}>
                 <Icon name="search" size={24} color="black" />
               </TouchableOpacity>
             </>
@@ -49,10 +50,13 @@ export const Header: React.FC<HeaderProps> = ({ back }) => {
           </Text>
         </View>
 
-        {/* Right Icon now also uses the hook */}
+        {/* Right Icon */}
         <View>
           <TouchableOpacity onPress={() => navigation.navigate('ShoppingCart')}>
-            <Icon name="cart" size={28} color="black" />
+            {/* 5. Wrap the Icon with the Badge component */}
+            <Badge content={cartItemCount}>
+              <Icon name="cart" size={28} color="black" />
+            </Badge>
           </TouchableOpacity>
         </View>
       </View>

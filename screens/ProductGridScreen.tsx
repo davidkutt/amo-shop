@@ -1,5 +1,8 @@
 import React from 'react';
-import { FlatList, SafeAreaView, View } from 'react-native';
+import { FlatList, SafeAreaView, Text, StyleSheet, ActivityIndicator, View, Image } from 'react-native';
+import { useQuery } from '@apollo/client';
+
+// Import our components and the GraphQL query
 import { ProductCard } from '../components/organisms/ProductCard';
 import { FilterBar } from '../components/organisms/FilterBar';
 // We would need to create/restyle the Header and SubNav components next

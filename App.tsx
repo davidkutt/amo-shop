@@ -18,11 +18,15 @@ import AppNavigator from './navigation/AppNavigator.tsx';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { CartProvider } from './context/CartContext.tsx';
 import { WishlistProvider } from './context/WishlistContext.tsx';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { client } from './services/shopifyService.ts';
 
 function App() {
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+      <ApolloProvider client={client}>
+
       <GestureHandlerRootView style={{ flex: 1 }}>
         <CartProvider>
           <WishlistProvider>
@@ -34,7 +38,9 @@ function App() {
           </WishlistProvider>
         </CartProvider>
       </GestureHandlerRootView>
-    </SafeAreaView>  );
+      </ApolloProvider>
+    </SafeAreaView>
+  );
 }
 
 export default App;

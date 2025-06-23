@@ -6,7 +6,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   Alert,
-  Image, // Import the standard Image component
+  Image,
+  StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Text } from '../components/atoms/Text';
@@ -34,7 +35,8 @@ const HeroSection = ({ title, subtitle, imageUrl, links, onPress }) => (
         resizeMode="cover"
         className="h-[60vh]"
       >
-        <View className="w-full h-full justify-center items-center bg-black/40 p-4">
+        <View style={styles.overlay} />
+        <View className="w-full h-full justify-center items-center p-4">
           <Text className="text-white uppercase font-bold text-4xl tracking-wider text-center">
             {title}
           </Text>
@@ -47,8 +49,7 @@ const HeroSection = ({ title, subtitle, imageUrl, links, onPress }) => (
       </ImageBackground>
     </TouchableOpacity>
     {links && (
-      // --- THIS IS THE FIX ---
-      // We change `justify-center` to `justify-around` to give the items space.
+      // This container no longer has any stray dot elements.
       <View className="bg-white p-4 flex-row justify-around items-center">
         {links.map((link) => (
           <CategoryLink
@@ -69,9 +70,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const navigateToGrid = (category) => {
-    Alert.alert('Navigate', `Go to ${category} grid`);
-    // In a real app, you would navigate like this:
-    // navigation.navigate('ProductGrid', { category });
+    navigation.navigate('ProductGrid', { category });
   };
 
   const heroData = [
@@ -109,12 +108,19 @@ const HomeScreen = () => {
             subtitle={section.subtitle}
             imageUrl={section.imageUrl}
             links={section.links}
-            onPress={section.onPress}
+            onPress={() => section.onPress && section.onPress()}
           />
         ))}
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+});
 
 export default HomeScreen;

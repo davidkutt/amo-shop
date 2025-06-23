@@ -12,7 +12,7 @@ import { Icon } from '../components/atoms/Icon';
 import { Switch } from '../components/molecules/Switch';
 import { Disclosure } from '../components/molecules/Disclosure';
 
-// A reusable sub-component for displaying a setting with a switch
+// Eine wiederverwendbare Unterkomponente zur Anzeige einer Einstellung mit einem Schalter
 const SettingSwitch = ({ label, value, onValueChange }) => (
   <View className="flex-row items-center justify-between p-4 bg-white border-b-2 border-black">
     <Text className="text-black uppercase font-semibold text-base">{label}</Text>
@@ -20,7 +20,7 @@ const SettingSwitch = ({ label, value, onValueChange }) => (
   </View>
 );
 
-// A reusable sub-component for links on this screen
+// Eine wiederverwendbare Unterkomponente für Links auf diesem Bildschirm
 const SettingLink = ({ label, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
@@ -32,7 +32,7 @@ const SettingLink = ({ label, onPress }) => (
 );
 
 /**
- * A screen for managing app settings and preferences.
+ * Ein Bildschirm zur Verwaltung von App-Einstellungen und Präferenzen.
  */
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -42,38 +42,38 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      {/* The Header for this screen would be provided by its own Stack Navigator */}
+      {/* Der Header für diesen Bildschirm würde von seinem eigenen Stack Navigator bereitgestellt */}
       <ScrollView>
-        {/* --- Notifications Section --- */}
+        {/* --- Benachrichtigungen-Abschnitt --- */}
         <View className="p-4 bg-gray-100 border-b-2 border-black">
-          <Text className="text-black uppercase font-bold text-lg">Notifications</Text>
+          <Text className="text-black uppercase font-bold text-lg">Benachrichtigungen</Text>
         </View>
         <SettingSwitch
-          label="Push Notifications"
+          label="Push-Benachrichtigungen"
           value={pushNotifications}
           onValueChange={setPushNotifications}
         />
 
-        {/* Using a Disclosure to group related email settings */}
-        <Disclosure summary="Email Notifications">
+        {/* Verwendung einer Disclosure-Komponente, um verwandte E-Mail-Einstellungen zu gruppieren */}
+        <Disclosure summary="E-Mail-Benachrichtigungen">
           <View className="p-4 gap-y-4">
             <View className="flex-row items-center justify-between">
-                <Text className="text-black text-base">Promotional Emails</Text>
-                <Switch value={emailPromotions} onValueChange={setEmailPromotions} />
+              <Text className="text-black text-base">Werbe-E-Mails</Text>
+              <Switch value={emailPromotions} onValueChange={setEmailPromotions} />
             </View>
-             <View className="flex-row items-center justify-between">
-                <Text className="text-black text-base">Order & Shipping Updates</Text>
-                <Switch value={emailUpdates} onValueChange={setEmailUpdates} />
+            <View className="flex-row items-center justify-between">
+              <Text className="text-black text-base">Bestell- & Versandaktualisierungen</Text>
+              <Switch value={emailUpdates} onValueChange={setEmailUpdates} />
             </View>
           </View>
         </Disclosure>
 
-         {/* --- Legal Section --- */}
+        {/* --- Rechtliches-Abschnitt --- */}
         <View className="p-4 bg-gray-100 border-b-2 border-black mt-6">
-          <Text className="text-black uppercase font-bold text-lg">Legal</Text>
+          <Text className="text-black uppercase font-bold text-lg">Rechtliches</Text>
         </View>
-        <SettingLink label="Terms of Service" onPress={() => Alert.alert("Navigate", "To Terms of Service")} />
-        <SettingLink label="Privacy Policy" onPress={() => Alert.alert("Navigate", "To Privacy Policy")} />
+        <SettingLink label="Nutzungsbedingungen" onPress={() => {}} />
+        <SettingLink label="Datenschutzerklärung" onPress={() => {}} />
 
       </ScrollView>
     </SafeAreaView>
