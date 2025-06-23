@@ -21,7 +21,7 @@ export const Icon: React.FC<IconProps> = ({
                                             className,
                                           }) => {
   const { colorScheme } = useColorScheme();
-  const iconColor = color || (colorScheme === 'dark' ? '#FFFFFF' : '#000000');
+  const iconColor = color || ( '#000000');
   const pathData = icons[name];
 
   if (!pathData) {

@@ -24,7 +24,7 @@ import { client } from './services/shopifyService.ts';
 function App() {
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <ApolloProvider client={client}>
 
       <GestureHandlerRootView style={{ flex: 1 }}>

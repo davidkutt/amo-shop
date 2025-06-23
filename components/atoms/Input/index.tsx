@@ -16,11 +16,10 @@ export const Input: React.FC<InputProps> = ({
                                               ...rest
                                             }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const { colorScheme } = useColorScheme(); // For dark mode compatibility
 
   // --- Base Styles ---
   const baseInputClass =
-    'border-2 rounded-lg p-3 text-base text-gray-900 dark:text-gray-100';
+    'border-2 rounded-lg p-3 text-base text-gray-900 ';
 
   // --- Variant & State Styles ---
   const inputStyles = {
@@ -47,7 +46,7 @@ export const Input: React.FC<InputProps> = ({
   return (
     <TextInput
       className={combinedClasses}
-      placeholderTextColor={colorScheme === 'dark' ? '#9CA3AF' : '#6B7281'} // gray-400 or gray-500
+      placeholderTextColor={ '#6B7281'} // gray-400 or gray-500
       onFocus={(e) => {
         setIsFocused(true);
         onFocus?.(e); // Forward the event if a handler is provided

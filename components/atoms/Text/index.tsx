@@ -18,12 +18,12 @@ export const Text: React.FC<TextProps> = ({
   // This maps our variant names to NativeWind classes.
   // This is where you define your app's visual hierarchy.
   const variantStyles = {
-    h1: 'text-4xl font-extrabold text-gray-900 dark:text-white',
-    h2: 'text-3xl font-bold text-gray-900 dark:text-white',
-    h3: 'text-xl font-bold text-gray-900 dark:text-white',
-    body: 'text-base font-normal text-gray-700 dark:text-gray-300',
-    caption: 'text-sm font-normal text-gray-500 dark:text-gray-400',
-    link: 'text-base font-medium text-blue-600 dark:text-blue-500 underline',
+    h1: 'text-4xl font-extrabold text-gray-900 ',
+    h2: 'text-3xl font-bold text-gray-900',
+    h3: 'text-xl font-bold text-gray-900 ',
+    body: 'text-base font-normal text-gray-700',
+    caption: 'text-sm font-normal text-gray-500 ',
+    link: 'text-base font-medium text-blue-600  underline',
   };
 
   const combinedClasses = `

@@ -17,7 +17,7 @@ export const FormField: React.FC<FormFieldProps> = ({
                                                     }) => {
   return (
     <View className={`w-full ${containerClassName}`}>
-      <Text className="text-base text-gray-800 dark:text-gray-200 font-medium mb-2">
+      <Text className="text-base text-gray-800 font-medium mb-2">
         {label}
       </Text>
 

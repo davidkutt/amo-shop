@@ -28,7 +28,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           <React.Fragment key={index}>
             {/* If it's the last crumb, render it as non-interactive text */}
             {isLast ? (
-              <Text variant="body" className="font-semibold text-gray-500 dark:text-gray-400">
+              <Text variant="body" className="font-semibold text-gray-500 ">
                 {crumb.label}
               </Text>
             ) : (
