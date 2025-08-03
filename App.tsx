@@ -5,41 +5,41 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { Alert, FlatList, SafeAreaView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
-import "./global.css"
-import { Input } from './components/atoms/Input';
-import { ProductCard } from './components/organisms/ProductCard';
-import ProductGridScreen from './screens/ProductGridScreen.tsx';
-import { Header } from './components/organisms/Header';
-import { SearchBar } from './components/molecules/SearchBar';
-import ProductDetailScreen from './screens/ProductDetailScreen.tsx';
-import AppNavigator from './navigation/AppNavigator.tsx';
+import React from 'react';
+import { StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { CartProvider } from './context/CartContext.tsx';
-import { WishlistProvider } from './context/WishlistContext.tsx';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { client } from './services/shopifyService.ts';
+import { ApolloProvider } from '@apollo/client';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import "./global.css"
+import { CartProvider } from 'context/CartContext.tsx';
+import { WishlistProvider } from 'context/WishlistContext.tsx';
+import { client } from 'services/shopifyService.ts';
+import AppNavigator from 'navigation/AppNavigator.tsx';
 
-function App() {
+function AppContent() {
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <ApolloProvider client={client}>
-
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <CartProvider>
-          <WishlistProvider>
-
-        {/*<Header/>*/}
-        {/*<SearchBar/>*/}
-        {/*<ProductGridScreen/>*/}
+    <View style={{ flex: 1, paddingTop: insets.top, paddingLeft: insets.left, paddingRight: insets.right, backgroundColor: '#fff' }}>
       <AppNavigator screenOptions={{ headerShown: false }}/>
-          </WishlistProvider>
-        </CartProvider>
-      </GestureHandlerRootView>
+    </View>
+  );
+}
+
+function App() {
+  return (
+    <SafeAreaProvider>
+      <ApolloProvider client={client}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <CartProvider>
+            <WishlistProvider>
+              <StatusBar barStyle="dark-content" />
+              <AppContent />
+            </WishlistProvider>
+          </CartProvider>
+        </GestureHandlerRootView>
       </ApolloProvider>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
