@@ -12,9 +12,9 @@ export const Tabbar = ({ state, descriptors, navigation }) => {
   const insets = useSafeAreaInsets();
 
   return (
-    // UPDATED: Background is now white with a top border for separation.
+    // UPDATED: Background is now using our design system background with a softer border
     <View
-      className="bg-white border-t border-gray-200"
+      className="bg-background border-t border-text/20"
       style={{ paddingBottom: insets.bottom }}
     >
       <View className="flex-row justify-around items-center h-16">
@@ -60,9 +60,9 @@ export const Tabbar = ({ state, descriptors, navigation }) => {
             });
           };
 
-          // --- UPDATED: New color logic for the classic design ---
-          const activeColor = '#334155'; // Our 'text-text' color (slate-700)
-          const inactiveColor = '#94a3b8'; // A lighter gray (slate-400)
+          // --- UPDATED: Using our design system colors ---
+          const activeColor = '#334155'; // Our 'text-text' color
+          const inactiveColor = '#94a3b8'; // A lighter gray for inactive state
           const color = isFocused ? activeColor : inactiveColor;
 
           return (

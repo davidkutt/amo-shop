@@ -9,29 +9,15 @@ interface FormFieldProps extends TextInputProps {
   containerClassName?: string;
 }
 
-export const FormField: React.FC<FormFieldProps> = ({
-                                                      label,
-                                                      error,
-                                                      containerClassName = '',
-                                                      ...rest // Pass all other TextInputProps down to the Input
-                                                    }) => {
+export const FormField: React.FC<FormFieldProps> = ({ label, children, error }) => {
   return (
-    <View className={`w-full ${containerClassName}`}>
-      <Text className="text-base text-gray-800 font-medium mb-2">
+    <View className="mb-4">
+      <Text className="text-base text-text font-medium mb-2">
         {label}
       </Text>
-
-      <Input
-        // Automatically set the variant to 'error' if an error message exists
-        variant={error ? 'error' : 'default'}
-        {...rest}
-      />
-
-      {/* Only render the error message if it's provided */}
+      {children}
       {error && (
-        <Text className="text-sm text-red-500 mt-2">
-          {error}
-        </Text>
+        <Text className="text-red-500 text-sm mt-1">{error}</Text>
       )}
     </View>
   );

@@ -12,11 +12,11 @@ interface TextInputFieldProps extends TextInputProps {
 export const TextInputField: React.FC<TextInputFieldProps> = ({ label, ...props }) => {
   return (
     <View className="w-full">
-      <Text className="text-black uppercase font-bold text-xs mb-1">
+      <Text className="text-text uppercase font-bold text-xs mb-1">
         {label}
       </Text>
       <TextInput
-        className="w-full bg-white border-2 border-black p-3 text-base text-black"
+        className="w-full bg-background border-2 border-text/20 rounded-lg p-3 text-base text-text"
         placeholderTextColor="#9CA3AF" // A standard gray for placeholders
         {...props}
       />

@@ -5,11 +5,13 @@ import {
   SafeAreaView,
   FlatList,
   Alert,
+  TouchableOpacity,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Text } from 'components/atoms/Text';
 import { ProductCard } from 'components/organisms/ProductCard';
 import { useWishlist } from 'context/WishlistContext.tsx';
+// import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // We'll need access to all products to filter them
 // In a real app, this would come from a global state/store (e.g., Redux, Zustand)
@@ -43,14 +45,15 @@ const WishlistScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       {/* The Header for this screen would be provided by its own Stack Navigator */}
+      <View className="flex-row items-center justify-between p-4 border-b-2 border-text/20 bg-background">
+        <Text variant="title" className="text-center flex-1">
+          Merkliste
+        </Text>
+        {/*<TouchableOpacity onPress={() => navigation.goBack()}>*/}
+        {/*  <Icon name="close" size={24} color="#334155" />*/}
+        {/*</TouchableOpacity>*/}
+      </View>
       <FlatList
-        ListHeaderComponent={() => (
-          <View className="p-4 border-b-2 border-black">
-            <Text className="text-black uppercase font-bold text-xl text-center tracking-widest">
-              Meine Merkliste
-            </Text>
-          </View>
-        )}
         data={favoritedProducts}
         renderItem={({ item, index }) => (
           <ProductCard
@@ -63,8 +66,8 @@ const WishlistScreen = () => {
         numColumns={2}
         // Show a message if the wishlist is empty
         ListEmptyComponent={() => (
-          <View className="flex-1 justify-center items-center mt-20">
-            <Text className="text-gray-500">Deine Merkliste ist leer.</Text>
+          <View className="text-center p-8">
+            <Text variant="body" className="text-text/70">Deine Merkliste ist leer.</Text>
           </View>
         )}
       />

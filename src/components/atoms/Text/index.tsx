@@ -22,7 +22,7 @@ export const Text: React.FC<TextProps> = ({
     case 'title':
       return (
         <RNText
-          className={`text-sans text-3xl font-extrabold text-slate-800 ${className}`}
+          className={`text-sans text-3xl font-extrabold text-text ${className}`}
           {...rest}
         >
           {children}
@@ -31,7 +31,7 @@ export const Text: React.FC<TextProps> = ({
     case 'subtitle':
       return (
         <RNText
-          className={`text-sans text-xl font-bold text-slate-700 ${className}`}
+          className={`text-sans text-xl font-bold text-text ${className}`}
           {...rest}
         >
           {children}
@@ -40,7 +40,7 @@ export const Text: React.FC<TextProps> = ({
     case 'small':
       return (
         <RNText
-          className={`text-sans text-sm font-medium text-slate-500 ${className}`}
+          className={`text-sans text-sm font-medium text-text/70 ${className}`}
           {...rest}
         >
           {children}
@@ -50,7 +50,7 @@ export const Text: React.FC<TextProps> = ({
     default:
       return (
         <RNText
-          className={`text-sans text-base font-normal text-slate-600 ${className}`}
+          className={`text-sans text-base font-normal text-text ${className}`}
           {...rest}
         >
           {children}

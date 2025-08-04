@@ -53,12 +53,10 @@ const FilterScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       {/* --- Screen Header --- */}
-      <View className="flex-row items-center justify-between p-4 border-b-2 border-black">
-        <Text className="text-black text-center font-bold text-xl uppercase tracking-widest">
-          Filter & Sortierung
-        </Text>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="close" size={24} color="black" />
+      <View className="flex-row items-center justify-between p-4 border-b border-text/20 bg-background">
+        <Text variant="body" className="font-medium">{title}</Text>
+        <TouchableOpacity onPress={onPress}>
+          <Icon name="chevron-right" size={24} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -105,9 +103,9 @@ const FilterScreen = () => {
 
         {/* --- In Stock Section --- */}
         <FilterSection title="Availability">
-          <View className="flex-row items-center justify-between">
-            <Text className="text-black text-base">Nur Produkte auf Lager anzeigen</Text>
-            <Switch value={inStockOnly} onValueChange={setInStockOnly} />
+          <View className="flex-row items-center justify-between p-4 border-b border-text/20 bg-background">
+            <Text variant="body">{label}</Text>
+            <Switch value={value} onValueChange={onValueChange} />
           </View>
         </FilterSection>
 

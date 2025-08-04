@@ -14,8 +14,8 @@ import { Disclosure } from 'components/molecules/Disclosure';
 
 // Eine wiederverwendbare Unterkomponente zur Anzeige einer Einstellung mit einem Schalter
 const SettingSwitch = ({ label, value, onValueChange }) => (
-  <View className="flex-row items-center justify-between p-4 bg-white border-b-2 border-black">
-    <Text className="text-black uppercase font-semibold text-base">{label}</Text>
+  <View className="flex-row items-center justify-between p-4 bg-background border-b-2 border-text/20">
+    <Text variant="body" className="font-semibold">{label}</Text>
     <Switch value={value} onValueChange={onValueChange} />
   </View>
 );
@@ -24,10 +24,10 @@ const SettingSwitch = ({ label, value, onValueChange }) => (
 const SettingLink = ({ label, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    className="flex-row items-center justify-between p-4 bg-white border-b-2 border-black"
+    className="flex-row items-center justify-between p-4 bg-background border-b-2 border-text/20"
   >
-    <Text className="text-black uppercase font-semibold text-base">{label}</Text>
-    <Icon name="chevron-right" size={24} color="black" />
+    <Text variant="body" className="font-semibold">{label}</Text>
+    <Icon name="chevron-right" size={24} color="#334155" />
   </TouchableOpacity>
 );
 
@@ -46,34 +46,25 @@ const SettingsScreen = () => {
       <ScrollView>
         {/* --- Benachrichtigungen-Abschnitt --- */}
         <View className="p-4 bg-gray-100 border-b-2 border-black">
-          <Text className="text-black uppercase font-bold text-lg">Benachrichtigungen</Text>
-        </View>
-        <SettingSwitch
-          label="Push-Benachrichtigungen"
-          value={pushNotifications}
-          onValueChange={setPushNotifications}
-        />
-
-        {/* Verwendung einer Disclosure-Komponente, um verwandte E-Mail-Einstellungen zu gruppieren */}
-        <Disclosure summary="E-Mail-Benachrichtigungen">
-          <View className="p-4 gap-y-4">
-            <View className="flex-row items-center justify-between">
-              <Text className="text-black text-base">Werbe-E-Mails</Text>
+          <Text variant="subtitle" className="mb-4">Benachrichtigungen</Text>
+          <View className="mb-6">
+            <View className="flex-row items-center justify-between p-4 bg-background border-b border-text/20">
+              <Text variant="body">Werbe-E-Mails</Text>
               <Switch value={emailPromotions} onValueChange={setEmailPromotions} />
             </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="text-black text-base">Bestell- & Versandaktualisierungen</Text>
+            <View className="flex-row items-center justify-between p-4 bg-background border-b border-text/20">
+              <Text variant="body">Bestell- & Versandaktualisierungen</Text>
               <Switch value={emailUpdates} onValueChange={setEmailUpdates} />
             </View>
           </View>
-        </Disclosure>
+        </View>
 
         {/* --- Rechtliches-Abschnitt --- */}
         <View className="p-4 bg-gray-100 border-b-2 border-black mt-6">
-          <Text className="text-black uppercase font-bold text-lg">Rechtliches</Text>
+          <Text variant="subtitle" className="mb-4">Rechtliches</Text>
+          <SettingLink label="Nutzungsbedingungen" onPress={() => {}} />
+          <SettingLink label="Datenschutzerklärung" onPress={() => {}} />
         </View>
-        <SettingLink label="Nutzungsbedingungen" onPress={() => {}} />
-        <SettingLink label="Datenschutzerklärung" onPress={() => {}} />
 
       </ScrollView>
     </SafeAreaView>

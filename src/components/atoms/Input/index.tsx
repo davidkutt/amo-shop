@@ -19,7 +19,7 @@ export const Input: React.FC<InputProps> = ({
 
   // --- Base Styles ---
   const baseInputClass =
-    'border-2 rounded-lg p-3 text-base text-gray-900 ';
+    'border-2 rounded-lg p-3 text-base text-text ';
 
   // --- Variant & State Styles ---
   const inputStyles = {

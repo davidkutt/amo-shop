@@ -54,21 +54,21 @@ const CheckoutScreen = () => {
   };
 
   return (
-      <SafeAreaView className="flex-1 bg-white">
+      <SafeAreaView className="flex-1 bg-background">
         {/* --- Bildschirm-Header --- */}
-        <View className="flex-row items-center justify-between p-4 border-b-2 border-black">
-          <Text className="text-black text-center font-bold text-xl uppercase tracking-widest flex-1">
+        <View className="flex-row items-center justify-between p-4 border-b-2 border-text/20">
+          <Text variant="title" className="text-center flex-1">
             Kasse
           </Text>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="close" size={24} color="black" />
+            <Icon name="close" size={24} color="#334155" />
           </TouchableOpacity>
         </View>
 
         <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
           {/* --- Versandadresse-Abschnitt --- */}
-          <View className="p-4 border-b-2 border-black">
-            <Text className="text-black uppercase font-bold text-lg mb-4">
+          <View className="p-4 border-b-2 border-text/20">
+            <Text variant="subtitle" className="mb-4">
               Versandadresse
             </Text>
             <View>
@@ -131,8 +131,8 @@ const CheckoutScreen = () => {
           </View>
 
           {/* --- Zahlungsmethode-Abschnitt --- */}
-          <View className="p-4 border-b-2 border-black">
-            <Text className="text-black uppercase font-bold text-lg mb-4">
+          <View className="p-4 border-b-2 border-text/20">
+            <Text variant="subtitle" className="mb-4">
               Zahlungsmethode
             </Text>
             <View >
@@ -170,7 +170,7 @@ const CheckoutScreen = () => {
         </ScrollView>
 
         {/* --- Bestellung aufgeben CTA --- */}
-        <View className="p-4 border-t-2 border-black absolute bottom-0 w-full bg-white">
+        <View className="p-4 border-t-2 border-text/20 absolute bottom-0 w-full bg-background">
           <Button
               title="Bestellung aufgeben"
               onPress={handlePlaceOrder}

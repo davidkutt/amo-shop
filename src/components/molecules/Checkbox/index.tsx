@@ -59,7 +59,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
       {/* The optional label */}
       {label && (
-        <Text className="text-black text-base ml-3">
+        <Text className="text-text text-base ml-3">
           {label}
         </Text>
       )}

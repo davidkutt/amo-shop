@@ -77,7 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <View className={` ${className} `}>
-      <View className="bg-white rounded-lg shadow-sm">
+      <View className="bg-background rounded-lg shadow-sm">
         <TouchableOpacity onPress={onPress}>
           <View className="relative">
             {/* The high-fidelity image is the hero of the card */}

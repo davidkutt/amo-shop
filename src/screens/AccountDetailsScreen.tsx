@@ -16,9 +16,9 @@ const AccountDetailsScreen = () => {
       {/* This screen should be part of a stack navigator that provides a Header */}
       <ScrollView>
         {/* --- Personal Information Section --- */}
-        <View className="p-4 border-b-2 border-black">
-          <Text className="text-black uppercase font-bold text-lg mb-4">
-            Personal Information
+        <View className="p-4 border-b-2 border-text/20">
+          <Text variant="subtitle" className="mb-4">
+            Persönliche Informationen
           </Text>
           <View className="gap-y-4">
             <TextInputField label="First Name" defaultValue="John" />
@@ -42,9 +42,9 @@ const AccountDetailsScreen = () => {
         </View>
 
         {/* --- Change Password Section --- */}
-        <View className="p-4">
-          <Text className="text-black uppercase font-bold text-lg mb-4">
-            Change Password
+        <View className="p-4 border-b-2 border-text/20">
+          <Text variant="subtitle" className="mb-4">
+            Sicherheit
           </Text>
           <View className="gap-y-4">
             <TextInputField

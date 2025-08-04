@@ -36,13 +36,13 @@ const pastOrders = [
 const OrderHistoryItem = ({ order, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    className="flex-row items-center justify-between p-4 bg-white border-b-2 border-black"
+    className="flex-row items-center justify-between p-4 bg-background border-b-2 border-text/20"
   >
     <View>
-      <Text className="text-black uppercase font-bold text-base">{order.id}</Text>
-      <Text className="text-black text-sm mt-1">Datum: {order.date}</Text>
-      <Text className="text-black text-sm">Gesamt: {order.total}</Text>
-      <Text className="text-black text-sm">Status: {order.status}</Text>
+      <Text variant="body" className="font-semibold">{order.id}</Text>
+      <Text variant="small" className="mt-1">Datum: {order.date}</Text>
+      <Text variant="small">Gesamt: {order.total}</Text>
+      <Text variant="small">Status: {order.status}</Text>
     </View>
     <Icon name="chevron-right" size={24} color="black" />
   </TouchableOpacity>

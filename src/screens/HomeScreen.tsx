@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, View, ActivityIndicator, ScrollView } from 'react-native';
+import { Alert, View, ActivityIndicator, ScrollView, SafeAreaView } from 'react-native';
 import { useQuery } from '@apollo/client';
 import Animated from 'react-native-reanimated';
 
@@ -11,10 +11,13 @@ import { HorizontalProductCarousel } from 'components/organisms/HorizontalProduc
 import { RecentlyViewed } from 'components/organisms/RecentlyViewed';
 
 // --- HOOKS & SERVICES ---
-import { GET_PRODUCTS_BY_COLLECTION_HANDLE_QUERY } from 'services/shopifyService.ts';
+import { 
+  GET_PRODUCTS_BY_COLLECTION_HANDLE_QUERY,
+  GET_COLLECTIONS_QUERY,
+  GET_COLLECTION_INFO_BY_HANDLE_QUERY,
+} from 'services/shopifyService.ts';
 import { useRecentlyViewedStore } from 'hooks/useRecentlyViewed.ts';
 import { useScroll } from 'context/ScrollContext.tsx';
-import { AnimatedScrollView } from 'react-native-reanimated/lib/typescript/component/ScrollView';
 import { ShopTheLook } from 'components/organisms/ShopTheLook';
 import { VisualCategoryNavigation } from 'components/organisms/VisualCategoryNavigation';
 import { HeroCarousel } from 'components/organisms/HeroCarousel';
@@ -52,10 +55,7 @@ const MOCK_SLIDES = [
 const HomeScreen = ({ navigation }) => {
   // 1. Get the global scroll handler from our context
   const { scrollHandler } = useScroll();
-
-  // --- DATA FETCHING ---
-  // Fetch a collection to serve as our "New Arrivals"
-  const { data: newArrivalsData, loading, error } = useQuery(
+  const { data: bestsellersData, loading: productsLoading, error: productsError } = useQuery(
     GET_PRODUCTS_BY_COLLECTION_HANDLE_QUERY,
     { variables: { handle: 'beliebt', first: 10 } }
   );
@@ -70,6 +70,7 @@ const HomeScreen = ({ navigation }) => {
     { variables: { handle: 'look-bohemian-summer' } }
   );
 
+  //  <-- THIS HOOK WAS MOVED HERE
   const { products: recentlyViewedProducts } = useRecentlyViewedStore();
 
   // --- LOADING & ERROR STATES ---
@@ -124,6 +125,7 @@ const HomeScreen = ({ navigation }) => {
     }
     : null;
 
+  // --- EVENT HANDLERS ---
   const handleSlidePress = (slideId: string) => Alert.alert('Carousel Tap', `Navigating to collection: ${slideId}`);
   const handleProductPress = (productHandle: string) => Alert.alert('Product Tap', `Navigating to product: ${productHandle}`);
   const handleCategoryPress = (categoryId: string) => Alert.alert('Category Tap', `Navigating to category: ${categoryId}`);
@@ -136,13 +138,11 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   return (
-    <AnimatedScrollView
-      onScroll={scrollHandler}
-      scrollEventThrottle={16} // This is crucial for smooth animations
-      className="bg-background"
-    >
-      {/* --- "JOYFUL & PLAYFUL" HOME SCREEN SECTIONS --- */}
-
+    <SafeAreaView className="flex-1 bg-background">
+      <Animated.ScrollView
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+      >
         <HeroSection
             title="Good morning, sunshine!"
             image={MOCK_SLIDES[0].image}
@@ -180,7 +180,8 @@ const HomeScreen = ({ navigation }) => {
         {look && look.imageUrl && (
           <ShopTheLook look={look} onPress={handleShopLookPress} />
         )}
-      </AnimatedScrollView>
+      </Animated.ScrollView>
+    </SafeAreaView>
   );
 };
 

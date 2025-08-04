@@ -23,21 +23,21 @@ const OrderConfirmationScreen = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <View className="flex-1 justify-center items-center p-8">
+      <View className="flex-1 items-center justify-center p-8">
         {/* --- Erfolgs-Icon --- */}
         <View className="w-24 h-24 border-4 border-black rounded-full items-center justify-center">
           <Icon name="check-2" size={60} color="black" />
         </View>
 
         {/* --- Bestätigungsnachricht --- */}
-        <Text className="text-black uppercase font-bold text-2xl text-center mt-8 tracking-wider">
-          Vielen Dank für Ihre Bestellung
+        <Text variant="title" className="text-center mt-8">
+          Bestellung bestätigt!
         </Text>
-        <Text className="text-black text-center text-base mt-2">
-          Ihre Bestellung #{orderId} wurde aufgegeben.
+        <Text variant="body" className="text-center mt-2">
+          Vielen Dank für deine Bestellung.
         </Text>
-        <Text className="text-black text-center text-base mt-1">
-          Eine Bestätigungs-E-Mail wurde an Ihre E-Mail Adresse gesendet.
+        <Text variant="body" className="text-center mt-1">
+          Bestellnummer: {orderId}
         </Text>
       </View>
 

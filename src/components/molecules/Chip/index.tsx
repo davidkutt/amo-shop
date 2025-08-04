@@ -64,12 +64,12 @@ export const Chip: React.FC<ChipProps> = ({
   // State classes for selected/unselected appearance
   const stateStyles = {
     selected: {
-      container: 'bg-black border-black',
+      container: 'bg-primary border-primary',
       text: 'text-white',
     },
     unselected: {
-      container: 'bg-white border-black',
-      text: 'text-black',
+      container: 'bg-background border-text/20',
+      text: 'text-text',
     },
   };
 

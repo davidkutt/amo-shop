@@ -15,19 +15,19 @@ import { useNavigation } from '@react-navigation/native';
 
 // This is a new, single-purpose component for this screen
 const CartItem = ({ item }) => (
-  <View className="flex-row items-center p-4 border-b-2 border-black bg-white">
-    <View className="w-24 h-24 border-2 border-black bg-gray-100">
+  <View className="flex-row items-center p-4 border-b-2 border-text/20 bg-background">
+    <View className="w-24 h-24 border-2 border-text/20 bg-gray-100">
       <Image source={{ uri: item.imageUrl }} className="w-full h-full" resizeMode="cover" />
     </View>
     <View className="flex-1 ml-4">
-      <Text className="text-black uppercase font-bold text-base">{item.name}</Text>
-      <Text className="text-black text-sm my-1">Größe: M</Text>
-      <Text className="text-black font-semibold text-lg">{item.price}</Text>
+      <Text variant="body" className="font-semibold">{item.name}</Text>
+      <Text variant="small" className="my-1">Größe: M</Text>
+      <Text variant="body" className="font-semibold">{item.price}</Text>
     </View>
     <View className="items-center">
-      <Text className="text-black text-lg font-bold">{item.quantity}</Text>
+      <Text variant="body" className="font-semibold">{item.quantity}</Text>
       <TouchableOpacity onPress={() => {}} className="mt-2 p-1">
-        <Icon name="trash" size={20} color="black" />
+        <Icon name="close" size={20} color="#334155" />
       </TouchableOpacity>
     </View>
   </View>
@@ -37,7 +37,7 @@ const CartItem = ({ item }) => (
  * The Shopping Cart screen with dynamic totals.
  */
 const ShoppingCartScreen = () => {
-  const { items } = useCart();
+  const { items, removeItem } = useCart();
   const navigation = useNavigation();
 
   // --- DYNAMIC TOTALS CALCULATION ---
@@ -63,12 +63,12 @@ const ShoppingCartScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       {/* For now, we'll use a simple text header. This could be our Header component */}
-      <View className="flex-row items-center justify-between p-4 border-b-2 border-black">
-        <Text className="text-black text-center font-bold text-xl uppercase tracking-widest flex-1">
-          Dein Warenkorb
+      <View className="flex-row items-center justify-between p-4 border-b-2 border-text/20 bg-background">
+        <Text variant="title" className="text-center flex-1">
+          Warenkorb
         </Text>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="close" size={24} color="black" />
+          <Icon name="close" size={24} color="#334155" />
         </TouchableOpacity>
       </View>
 
@@ -78,24 +78,26 @@ const ShoppingCartScreen = () => {
           {items.length > 0 ? (
             items.map((item) => <CartItem key={item.id} item={item} />)
           ) : (
-            <Text className="text-center p-8 text-gray-500">Dein Warenkorb ist leer.</Text>
+            <View className="text-center p-8">
+              <Text variant="body" className="text-text/70">Dein Warenkorb ist leer.</Text>
+            </View>
           )}
         </View>
 
         {/* --- Order Summary with dynamic values --- */}
         {items.length > 0 && (
           <View className="p-4 mt-4">
-            <View className="flex-row justify-between mb-2">
-              <Text className="text-black uppercase text-base">PREIS</Text>
-              <Text className="text-black font-semibold text-base">{subtotal} €</Text>
+            <View className="flex-row justify-between items-center p-4 border-b border-text/20">
+              <Text variant="body">PREIS</Text>
+              <Text variant="body" className="font-semibold">{subtotal} €</Text>
             </View>
-            <View className="flex-row justify-between mb-4">
-              <Text className="text-black uppercase text-base">Versand</Text>
-              <Text className="text-black font-semibold text-base">KOSTENLOS</Text>
+            <View className="flex-row justify-between items-center p-4 border-b border-text/20">
+              <Text variant="body">Versand</Text>
+              <Text variant="body" className="font-semibold">KOSTENLOS</Text>
             </View>
-            <View className="flex-row justify-between pt-4 border-t-2 border-black">
-              <Text className="text-black uppercase font-bold text-lg">Gesamt</Text>
-              <Text className="text-black font-bold text-lg">{total} €</Text>
+            <View className="flex-row justify-between items-center p-4">
+              <Text variant="subtitle">Gesamt</Text>
+              <Text variant="subtitle">{total} €</Text>
             </View>
           </View>
         )}

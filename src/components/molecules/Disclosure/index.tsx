@@ -50,7 +50,7 @@ export const Disclosure: React.FC<DisclosureProps> = ({
       >
         <View className="flex-1">
           {typeof summary === 'string' ? (
-            <Text className="text-black uppercase font-bold text-base">
+            <Text className="text-text font-semibold">
               {summary}
             </Text>
           ) : (

@@ -75,7 +75,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
       {/* The optional label */}
       {label && (
-        <Text className="text-black text-base ml-3 font-semibold uppercase">
+        <Text className="text-text text-base ml-3 font-semibold">
           {label}
         </Text>
       )}

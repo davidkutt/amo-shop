@@ -14,11 +14,13 @@ import { Icon } from 'components/atoms/Icon';
 const AccountLink = ({ label, onPress }) => (
   <TouchableOpacity
     onPress={onPress}
-    className="flex-row items-center justify-between p-4 bg-white border-b-2 border-black"
+    className="flex-row items-center justify-between p-4 bg-background border-b-2 border-text/20"
   >
-    <Text className="text-black uppercase font-bold text-base">{label}</Text>
+    <Text variant="body" className="font-semibold">{label}</Text>
     {/* The chevron icon provides a clear affordance that this is a link */}
-    <Icon name="chevron-right" size={24} color="black" />
+    <TouchableOpacity onPress={onPress}>
+      <Icon name="chevron-right" size={24} color="#334155" />
+    </TouchableOpacity>
   </TouchableOpacity>
 );
 
