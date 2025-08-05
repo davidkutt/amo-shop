@@ -1,6 +1,6 @@
 # Product Requirements Document: Joyful Pets App (v1.5 - MVP Final)
 
-This document outlines the product requirements, design principles, and technical specifications for the initial build (Minimum Viable Product) of the "Joyful Pets" e-commerce mobile application.
+This document outlines the product requirements, design principles, and technical specifications for the initial build (Minimum Viable Product) of the "Herzenshund" e-commerce mobile application.
 
 ---
 
