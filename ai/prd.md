@@ -57,6 +57,23 @@ The primary font will be **Nunito** (or a similar rounded sans-serif) to feel mo
 - **Style:** Animations should be slightly **bouncy and satisfying**.
 - **Feedback:** User actions (button/tab presses) must be confirmed with **light haptic feedback**.
 
+### 2.6. Styling Requirements
+**CRITICAL: NativeWind classes MUST ALWAYS be used instead of regular React Native StyleSheet styling throughout the entire application.** This ensures consistency with the design system and enables proper theming. All components should use className props with Tailwind CSS classes rather than StyleSheet.create().
+
+### 2.7. Import Path Requirements
+**CRITICAL: Always use the configured path aliases from tsconfig.json instead of relative imports.** This ensures better maintainability and consistency across the codebase. Use the following path aliases:
+
+- `components/*` for component imports
+- `screens/*` for screen imports  
+- `services/*` for service imports
+- `assets/*` for asset imports
+- `context/*` for context imports
+- `navigation/*` for navigation imports
+- `theme/*` for theme imports
+- `hooks/*` for hook imports
+
+**Example:** Use `import StartScreen from 'screens/StartScreen';` instead of `import StartScreen from '../screens/StartScreen';`
+
 ---
 
 ## 3. Core Features & Functionality (MVP)

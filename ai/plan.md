@@ -1,6 +1,6 @@
-# Joyful Pets App Implementation Plan
+# Herzenshund Implementation Plan
 
-This plan outlines the steps for building the "Joyful Pets" React Native application. It is structured into sequential phases, with each phase delivering a "vertical slice" of functionality. Each task is a checkbox that can be marked off by you or your coding AI to track progress.
+This plan outlines the steps for building the "Herzenshund" React Native application. It is structured into sequential phases, with each phase delivering a "vertical slice" of functionality. Each task is a checkbox that can be marked off by you or your coding AI to track progress.
 
 ---
 
@@ -9,19 +9,19 @@ This plan outlines the steps for building the "Joyful Pets" React Native applica
 * **Goal:** Establish the project structure, install dependencies, configure styling and navigation, and connect to the Shopify API. This phase builds the app's skeleton.
 * **Steps/Tasks:**
     * - [x] **1.1. Project Initialization:** Set up a new React Native project. Install core dependencies: `react-navigation`, a Tailwind CSS library (e.g., `nativewind`), and a state manager (e.g., `zustand`).
-    * - [ ] **1.2. Theming & Styling:** Configure the Tailwind CSS theme file (`tailwind.config.js`) with the exact color palette (`primary`, `background`, `text`, accents) and the `Nunito` font family as defined in `prd.md`.
-    * - [ ] **1.3. Navigation Setup:**
-        * - [ ] Implement a main Tab Navigator.
-        * - [ ] Create the four required tabs with German labels: `Start`, `Suche`, `Merkliste`, `Profil`.
-        * - [ ] Create placeholder screen files for each tab.
+    * - [x] **1.2. Theming & Styling:** Configure the Tailwind CSS theme file (`tailwind.config.js`) with the exact color palette (`primary`, `background`, `text`, accents) and the `Nunito` font family as defined in `prd.md`.
+    * - [x] **1.3. Navigation Setup:**
+        * - [x] Implement a main Tab Navigator.
+        * - [x] Create the four required tabs with German labels: `Start`, `Suche`, `Merkliste`, `Profil`.
+        * - [x] Create placeholder screen files for each tab.
     * - [ ] **1.4. Basic Reusable Components:** Create and style initial versions of core UI components:
-        * - [ ] `components/ui/Button.tsx`: A fully rounded button using the primary color with the `active:scale-95` animation.
-        * - [ ] `components/ui/ProductCard.tsx`: A skeleton card with rounded corners and a soft shadow, ready for product data.
-        * - [ ] `components/ui/ScreenWrapper.tsx`: A wrapper to handle safe areas and apply the default background color.
-    * - [ ] **1.5. Shopify API Connection:**
-        * - [ ] Set up the Shopify Storefront API client (using GraphQL).
-        * - [ ] Securely store API credentials in environment variables.
-        * - [ ] Create a test function to fetch basic shop information (e.g., shop name) to verify the connection.
+        * - [x] `components/ui/Button.tsx`: A fully rounded button using the primary color with the `active:scale-95` animation.
+        * - [x] `components/ui/ProductCard.tsx`: A skeleton card with rounded corners and a soft shadow, ready for product data.
+        * - [x] `components/ui/ScreenWrapper.tsx`: A wrapper to handle safe areas and apply the default background color.
+    * - [x] **1.5. Shopify API Connection:**
+        * - [x] Set up the Shopify Storefront API client (using GraphQL).
+        * - [x] Securely store API credentials in environment variables.
+        * - [x] Create a test function to fetch basic shop information (e.g., shop name) to verify the connection.
 
 ---
 
@@ -29,10 +29,10 @@ This plan outlines the steps for building the "Joyful Pets" React Native applica
 
 * **Goal:** Fetch products and collections from Shopify and display them on the Home and Search screens, enabling basic product discovery.
 * **Steps/Tasks:**
-    * - [ ] **2.1. Shopify Data Queries:** Implement GraphQL queries to fetch:
-        * - [ ] A list of all "Design Collections".
-        * - [ ] A list of products belonging to a specific collection.
-        * - [ ] A list of all `Product Categories` (this might be derived from product tags or types).
+    * - [x] **2.1. Shopify Data Queries:** Implement GraphQL queries to fetch:
+        * - [x] A list of all "Design Collections".
+        * - [x] A list of products belonging to a specific collection.
+        * - [x] A list of all `Product Categories` (this might be derived from product tags or types).
     * - [ ] **2.2. Home Screen (`Start`) Implementation:**
         * - [ ] Fetch the "Design Collections" data.
         * - [ ] Render a vertical list of horizontal carousels, one for each collection.
