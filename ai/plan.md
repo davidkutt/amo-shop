@@ -1,120 +1,183 @@
 # Herzenshund Implementation Plan
 
-This plan outlines the steps for building the "Herzenshund" React Native application. It is structured into sequential phases, with each phase delivering a "vertical slice" of functionality. Each task is a checkbox that can be marked off by you or your coding AI to track progress.
+This plan outlines the steps for building the "Herzenshund" React Native application. The approach is to first build a comprehensive e-commerce UI library using Shopify Restyle, then build the full application using these components.
 
 ---
 
-### **Phase 1: Project Foundation & Core UI Shell**
+## **Phase 1: E-commerce UI Library Foundation**
 
-* **Goal:** Establish the project structure, install dependencies, configure styling and navigation, and connect to the Shopify API. This phase builds the app's skeleton.
+* **Goal:** Build a complete, reusable e-commerce UI library using Shopify Restyle with all atomic, molecular, and organism components.
 * **Steps/Tasks:**
-    * - [x] **1.1. Project Initialization:** Set up a new React Native project. Install core dependencies: `react-navigation`, a Tailwind CSS library (e.g., `nativewind`), and a state manager (e.g., `zustand`).
-    * - [x] **1.2. Theming & Styling:** Configure the Tailwind CSS theme file (`tailwind.config.js`) with the exact color palette (`primary`, `background`, `text`, accents) and the `Nunito` font family as defined in `prd.md`.
-    * - [x] **1.3. Navigation Setup:**
-        * - [x] Implement a main Tab Navigator.
-        * - [x] Create the four required tabs with German labels: `Start`, `Suche`, `Merkliste`, `Profil`.
-        * - [x] Create placeholder screen files for each tab.
-    * - [ ] **1.4. Basic Reusable Components:** Create and style initial versions of core UI components:
-        * - [x] `components/ui/Button.tsx`: A fully rounded button using the primary color with the `active:scale-95` animation.
-        * - [x] `components/ui/ProductCard.tsx`: A skeleton card with rounded corners and a soft shadow, ready for product data.
-        * - [x] `components/ui/ScreenWrapper.tsx`: A wrapper to handle safe areas and apply the default background color.
-    * - [x] **1.5. Shopify API Connection:**
-        * - [x] Set up the Shopify Storefront API client (using GraphQL).
-        * - [x] Securely store API credentials in environment variables.
-        * - [x] Create a test function to fetch basic shop information (e.g., shop name) to verify the connection.
+    * - [ ] **1.1. Project Setup & Restyle Configuration:**
+        * - [x] Set up a new React Native project with Shopify Restyle
+        * - [x] Configure Restyle theme with the exact color palette and typography from `prd.md`
+        * - [x] Set up proper import path aliases (components/, services/, etc.)
+        * - [x] Install and configure React Navigation
+        * - [x] Set up state management (Zustand)
+    * - [ ] **1.2. Atomic Components (Atoms):**
+        * - [x] `components/atoms/Button` - Fully rounded button with variants (primary, outline, text)
+        * - [x] `components/atoms/Icon` - SVG icon component with size, color, and fill controls
+        * - [x] `components/atoms/Input` - Text input with default/error states
+        * - [x] `components/atoms/Text` - Typography component with variants (title, subtitle, body, small)
+    * - [ ] **1.3. Molecular Components (Molecules):**
+        * - [x] `components/molecules/Badge` - Notification/count indicators
+        * - [x] `components/molecules/Breadcrumbs` - Navigation breadcrumbs
+        * - [x] `components/molecules/CartItem` - Single cart item display
+        * - [x] `components/molecules/Checkbox` - Form checkbox component
+        * - [x] `components/molecules/Chip` - Compact label/filter element
+        * - [x] `components/molecules/ColorSelector` - Color selection interface
+        * - [x] `components/molecules/Counter` - Number display component
+        * - [x] `components/molecules/Disclosure` - Expandable content component
+        * - [x] `components/molecules/FilterButton` - Filter/sort button
+        * - [x] `components/molecules/FormField` - Form field wrapper
+        * - [x] `components/molecules/RatingDisplay` - Star rating component
+        * - [x] `components/molecules/SearchBar` - Search input component
+        * - [x] `components/molecules/Switch` - Toggle switch component
+        * - [x] `components/molecules/TextInputField` - Enhanced text input
+    * - [ ] **1.4. Organism Components (Organisms):**
+        * - [ ] `components/organisms/Header` - Dynamic header with scroll animations
+        * - [ ] `components/organisms/HeroCarousel` - Full-width auto-playing carousel
+        * - [ ] `components/organisms/HeroSection` - Static welcome section
+        * - [ ] `components/organisms/ProductCard` - Product display with wishlist/cart
+        * - [ ] `components/organisms/CategoryCard` - Category navigation cards
+        * - [ ] `components/organisms/FilterBar` - Product filtering interface
+        * - [ ] `components/organisms/HorizontalProductCarousel` - Horizontal product scrolling
+        * - [ ] `components/organisms/PersonalityPacksCarousel` - Personality-based shopping
+        * - [ ] `components/organisms/RecentlyViewed` - Recently viewed products
+        * - [ ] `components/organisms/ShopTheLook` - Curated look showcase
+        * - [ ] `components/organisms/Tabbar` - Bottom navigation component
+    * - [ ] **1.5. Theme & Design System:**
+        * - [ ] Create comprehensive Restyle theme with all colors, typography, spacing
+        * - [ ] Implement "Warm & Elegant Minimalism" design system
+        * - [ ] Add animation utilities and haptic feedback
+        * - [ ] Create accessibility helpers and utilities
 
 ---
 
-### **Phase 2: Product Discovery (Home & Search)**
+## **Phase 2: Core Application Structure**
 
-* **Goal:** Fetch products and collections from Shopify and display them on the Home and Search screens, enabling basic product discovery.
+* **Goal:** Build the main application structure using the UI library components.
 * **Steps/Tasks:**
-    * - [x] **2.1. Shopify Data Queries:** Implement GraphQL queries to fetch:
-        * - [x] A list of all "Design Collections".
-        * - [x] A list of products belonging to a specific collection.
-        * - [x] A list of all `Product Categories` (this might be derived from product tags or types).
-    * - [ ] **2.2. Home Screen (`Start`) Implementation:**
-        * - [ ] Fetch the "Design Collections" data.
-        * - [ ] Render a vertical list of horizontal carousels, one for each collection.
-        * - [ ] Populate the carousels with the `ProductCard` component, passing in product data (image, name, price).
-    * - [ ] **2.3. Search Screen (`Suche`) Default View:**
-        * - [ ] Implement the default state of the screen.
-        * - [ ] Display the Search & Filter bar UI at the top.
-        * - [ ] Fetch the list of all product categories and display them as a grid of clickable cards below the bar.
-    * - [ ] **2.4. Home-to-Search Navigation:** Implement the interaction where tapping a collection title on the `Start` screen navigates to the `Suche` screen, passing the collection's ID to pre-filter the view.
+    * - [ ] **2.1. Navigation Setup:**
+        * - [ ] Implement main Tab Navigator with German labels
+        * - [ ] Create placeholder screens for each tab (Start, Suche, Merkliste, Profil)
+        * - [ ] Set up stack navigators for each tab
+    * - [ ] **2.2. Shopify API Integration:**
+        * - [ ] Set up Shopify Storefront API client (GraphQL)
+        * - [ ] Create environment configuration for API credentials
+        * - [ ] Implement basic shop information fetching
+    * - [ ] **2.3. Context & State Management:**
+        * - [ ] Create `context/ScrollContext` for scroll-based animations
+        * - [ ] Create `context/WishlistContext` for wishlist state
+        * - [ ] Create `context/CartContext` for shopping cart state
+        * - [ ] Set up local storage service for persistence
 
 ---
 
-### **Phase 3: Product Detail Page & Personalization**
+## **Phase 3: Product Discovery Implementation**
 
-* **Goal:** Allow users to view detailed information about a single product, see related items, and enter personalization text.
+* **Goal:** Implement product discovery features using the UI library components.
 * **Steps/Tasks:**
-    * - [ ] **3.1. Navigation to PDP:** Make `ProductCard` components tappable, navigating to a `ProductDetailScreen` and passing the product ID.
-    * - [ ] **3.2. PDP Data Fetching:** Create a GraphQL query to fetch all details for a single product by its ID.
-    * - [ ] **3.3. PDP UI Implementation:** Display all fetched product data: images, title, description, price.
-    * - [ ] **3.4. Personalization Input:**
-        * - [ ] Conditionally render single-line text inputs based on the product type (`Pet Name`, `Phone Number`).
-        * - [ ] Enforce the 200-character limit on the inputs.
-    * - [ ] **3.5. "Complete the Set" Carousel:**
-        * - [ ] On the PDP, fetch the other products from the same "Design Collection".
-        * - [ ] Display them in a horizontal carousel at the bottom of the screen under the title "Complete the Set".
+    * - [ ] **3.1. Shopify Data Layer:**
+        * - [ ] Implement GraphQL queries for Design Collections
+        * - [ ] Create product fetching by collection
+        * - [ ] Set up product category filtering
+    * - [ ] **3.2. Home Screen (`Start`):**
+        * - [ ] Use `HeroCarousel` for featured collections
+        * - [ ] Implement `HorizontalProductCarousel` for each collection
+        * - [ ] Add `RecentlyViewed` section using local storage
+        * - [ ] Use `PersonalityPacksCarousel` for personality-based shopping
+    * - [ ] **3.3. Search Screen (`Suche`):**
+        * - [ ] Implement `SearchBar` and `FilterBar` components
+        * - [ ] Create category grid using `CategoryCard` components
+        * - [ ] Add product grid with `ProductCard` components
+        * - [ ] Implement filter and sort functionality
 
 ---
 
-### **Phase 4: Local Persistence (Wishlist & Recently Viewed)**
+## **Phase 4: Product Detail & Personalization**
 
-* **Goal:** Implement client-side persistence for user engagement features using the device's local storage.
+* **Goal:** Build product detail pages with personalization features.
 * **Steps/Tasks:**
-    * - [ ] **4.1. Local Storage Service:** Create a utility service (`services/localStorage.ts`) to abstract `AsyncStorage` operations (get, set, remove items).
-    * - [ ] **4.2. Recently Viewed Logic:**
-        * - [ ] On PDP mount, add the current product to a "recently viewed" list in local storage (ensure the list is unique and capped at 10 items).
-        * - [ ] Create and display the "Recently Viewed" section on the `Start` screen by fetching and displaying these products.
-    * - [ ] **4.3. Guest Wishlist Logic:**
-        * - [ ] Add a functional "Wishlist" button (a circular icon button) to the `ProductCard` and `PDP`.
-        * - [ ] Toggling the button adds or removes the product ID from a wishlist array in local storage.
-    * - [ ] **4.4. Wishlist Screen (`Merkliste`) UI:**
-        * - [ ] On screen load, get the list of product IDs from local storage.
-        * - [ ] Fetch the full product details from Shopify for those IDs.
-        * - [ ] Display the products in a grid.
-        * - [ ] Implement the "Empty State" UI (friendly message and icon) if the list is empty.
+    * - [ ] **4.1. Product Detail Page:**
+        * - [ ] Create detailed product view using UI components
+        * - [ ] Implement image gallery and product information
+        * - [ ] Add personalization input fields with character limits
+        * - [ ] Use `ShopTheLook` for "Complete the Set" carousel
+    * - [ ] **4.2. Personalization System:**
+        * - [ ] Implement conditional input fields based on product type
+        * - [ ] Add 200-character limit validation
+        * - [ ] Create personalization preview functionality
 
 ---
 
-### **Phase 5: Core E-commerce Flow (Cart & Checkout)**
+## **Phase 5: E-commerce Core Features**
 
-* **Goal:** Enable the full shopping funnel, from adding a personalized item to the cart to initiating the Shopify checkout.
+* **Goal:** Implement shopping cart, wishlist, and checkout functionality.
 * **Steps/Tasks:**
-    * - [ ] **5.1. Cart State Management:** Set up a `zustand` store (or equivalent) to manage the cart's state (an array of cart items with product details, quantity, and personalization text).
-    * - [ ] **5.2. "Add to Cart" Functionality:** Implement the "Add to Cart" button on the PDP. This action should add the current product, its selected quantity, and any personalization data to the global cart state.
-    * - [ ] **5.3. Cart Persistence:** Use the local storage service to save the cart state whenever it changes and rehydrate the state when the app launches.
-    * - [ ] **5.4. Shopping Cart UI:**
-        * - [ ] Create a dedicated `CartScreen` or modal.
-        * - [ ] Display all items in the cart, including their personalization text.
-        * - [ ] Allow users to update quantities or remove items.
-        * - [ ] Display the subtotal and total price.
-    * - [ ] **5.5. Shopify Checkout Integration:**
-        * - [ ] Implement the `checkout` action.
-        * - [ ] Use the Shopify Storefront API to create a `checkoutCreate` mutation with the cart items.
-        * - [ ] Redirect the user to the returned `webUrl` in an in-app browser.
+    * - [ ] **5.1. Shopping Cart:**
+        * - [ ] Implement cart state management with Zustand
+        * - [ ] Create cart screen using `CartItem` components
+        * - [ ] Add quantity controls and remove functionality
+        * - [ ] Implement cart persistence in local storage
+    * - [ ] **5.2. Wishlist Features:**
+        * - [ ] Implement wishlist toggle in `ProductCard`
+        * - [ ] Create wishlist screen with grid layout
+        * - [ ] Add empty state with friendly messaging
+        * - [ ] Implement wishlist persistence
+    * - [ ] **5.3. Checkout Integration:**
+        * - [ ] Integrate with Shopify Storefront API checkout
+        * - [ ] Create checkout flow with personalization data
+        * - [ ] Implement guest checkout as default
 
 ---
 
-### **Phase 6: User Accounts & Profile**
+## **Phase 6: User Accounts & Polish**
 
-* **Goal:** Finalize the MVP by adding optional user accounts for order history and wishlist syncing.
+* **Goal:** Add user authentication and final polish to the application.
 * **Steps/Tasks:**
-    * - [ ] **6.1. Shopify Customer Authentication:** Implement actions for:
-        * - [ ] `customerCreate` (Sign Up)
-        * - [ ] `customerAccessTokenCreate` (Login)
-        * - [ ] `customerAccessTokenDelete` (Logout)
-    * - [ ] **6.2. Authentication UI:** Create simple, modal-based forms for Login and Sign Up, accessible from the `Profil` tab.
-    * - [ ] **6.3. Profile Screen (`Profil`) UI:**
-        * - [ ] If the user is logged out, display "Login" and "Sign Up" buttons.
-        * - [ ] If logged in, display links for `Order History`, `Personal Details`, and a `Logout` button.
-    * - [ ] **6.4. Order History Implementation:**
-        * - [ ] Create an `OrderHistoryScreen`.
-        * - [ ] Fetch the logged-in customer's orders from Shopify.
-        * - [ ] Display the orders in a list, showing `Order Date`, `Number`, `Total Price`, and `Status`.
-    * - [ ] **6.5. Wishlist Sync on Login:**
-        * - [ ] On successful login, fetch the user's server-side wishlist (if stored in metafields).
-        * - [ ] Add any fetched items to the user's local storage wishlist to unify the view.
+    * - [ ] **6.1. User Authentication:**
+        * - [ ] Implement Shopify customer authentication
+        * - [ ] Create login/signup forms using UI components
+        * - [ ] Add profile screen with user information
+    * - [ ] **6.2. Order History:**
+        * - [ ] Create order history screen
+        * - [ ] Implement order fetching from Shopify
+        * - [ ] Display order details with proper formatting
+    * - [ ] **6.3. Final Polish:**
+        * - [ ] Add loading states and error handling
+        * - [ ] Implement proper accessibility features
+        * - [ ] Add haptic feedback throughout the app
+        * - [ ] Optimize performance and animations
+
+---
+
+## **Technical Requirements**
+
+### **Styling & Theming**
+- **Shopify Restyle**: All styling must use Shopify Restyle instead of NativeWind
+- **Theme System**: Comprehensive theme with colors, typography, spacing, and animations
+- **Design System**: "Warm & Elegant Minimalism" with proper component variants
+
+### **Import Paths**
+All imports must use the configured path aliases:
+- `components/*` for component imports
+- `screens/*` for screen imports  
+- `services/*` for service imports
+- `assets/*` for asset imports
+- `context/*` for context imports
+- `navigation/*` for navigation imports
+- `theme/*` for theme imports
+- `hooks/*` for hook imports
+
+### **Component Architecture**
+- **Atomic Design**: All components follow atomic design principles
+- **Reusability**: Components must be highly reusable and themable
+- **TypeScript**: Full TypeScript support with proper interfaces
+- **Accessibility**: Proper accessibility labels and roles throughout
+
+### **Performance & Quality**
+- **Animations**: Smooth spring animations using react-native-reanimated
+- **Image Optimization**: Efficient image loading and caching
+- **State Management**: Efficient state management with Zustand
+- **Error Handling**: Comprehensive error handling and user feedback

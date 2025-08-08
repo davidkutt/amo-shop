@@ -1,0 +1,54 @@
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+pnpm-debug.log
+
+# Metro
+.metro-cache
+
+# Jest
+/coverage
+
+# Android
+/android/app/build
+/android/build
+/android/.gradle
+/android/gradle
+/android/gradlew
+/android/gradlew.bat
+/android/local.properties
+/android/.idea/
+/android/captures/
+/android/app/src/main/assets/index.android.bundle
+/android/app/src/main/res/drawable-*/node_modules*
+/android/app/src/main/res/raw/node_modules*
+
+# iOS
+/ios/build
+/ios/Pods
+/ios/.xcode.env.local
+/ios/DerivedData
+*.hmap
+
+# macOS
+/macos/build
+/macos/Pods
+/macos/.xcode.env.local
+
+# Editor-specific
+.vscode/
+.idea/
+*.iml
+*.project
+*.classpath
+*.c9
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local

@@ -1,6 +1,7 @@
 {
   "extends": "@react-native/typescript-config",
   "compilerOptions": {
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
@@ -13,7 +14,6 @@
       "hooks/*": ["src/hooks/*"],
       "config/*": ["src/config/*"],
       "types/*": ["src/types/*"],
-
       // The keys here MUST match the keys in your babel.config.js 'alias'
     }
   },

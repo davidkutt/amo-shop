@@ -14,7 +14,7 @@ module.exports = {
           "context": "./src/context",
           "navigation" :"./src/navigation",
           "theme" :"./src/theme",
-          "hooks" :"./src/hooks"
+          "hooks" :"./src/hooks",
         }
       }
     ],

@@ -58,10 +58,10 @@ The primary font will be **Nunito** (or a similar rounded sans-serif) to feel mo
 - **Feedback:** User actions (button/tab presses) must be confirmed with **light haptic feedback**.
 
 ### 2.6. Styling Requirements
-**CRITICAL: NativeWind classes MUST ALWAYS be used instead of regular React Native StyleSheet styling throughout the entire application.** This ensures consistency with the design system and enables proper theming. All components should use className props with Tailwind CSS classes rather than StyleSheet.create().
+**CRITICAL: Shopify Restyle MUST ALWAYS be used instead of regular React Native StyleSheet styling throughout the entire application.** This ensures consistency with the design system and enables proper theming. All components should use Restyle's `createRestyleComponent` and theme-based styling rather than StyleSheet.create().
 
 ### 2.7. Import Path Requirements
-**CRITICAL: Always use the configured path aliases from tsconfig.json instead of relative imports.** This ensures better maintainability and consistency across the codebase. Use the following path aliases:
+**CRITICAL: Always use the configured path aliases from babel.config.js instead of relative imports.** This ensures better maintainability and consistency across the codebase. Use the following path aliases:
 
 - `components/*` for component imports
 - `screens/*` for screen imports  
@@ -73,6 +73,15 @@ The primary font will be **Nunito** (or a similar rounded sans-serif) to feel mo
 - `hooks/*` for hook imports
 
 **Example:** Use `import StartScreen from 'screens/StartScreen';` instead of `import StartScreen from '../screens/StartScreen';`
+
+### 2.8. UI Library Architecture
+**CRITICAL: The application will be built using a comprehensive e-commerce UI library that follows atomic design principles:**
+
+- **Atomic Components:** Button, Icon, Input, Text
+- **Molecular Components:** Badge, Breadcrumbs, CartItem, Checkbox, Chip, ColorSelector, Counter, Disclosure, FilterButton, FormField, RatingDisplay, SearchBar, Switch, TextInputField
+- **Organism Components:** Header, HeroCarousel, HeroSection, ProductCard, CategoryCard, FilterBar, HorizontalProductCarousel, PersonalityPacksCarousel, RecentlyViewed, ShopTheLook, Tabbar
+
+All components must be highly reusable, themable, and built using Shopify Restyle.
 
 ---
 
@@ -127,9 +136,20 @@ The app will use a main tab bar with four items. The labels will be in German.
 ## 4. Technical Requirements
 
 - **Platform:** React Native
+- **Styling:** **Shopify Restyle** (CRITICAL: No NativeWind or other styling libraries)
 - **API Integration:** Shopify Storefront API
 - **Local Storage:** Used for "Recently Viewed" products, the primary "Wishlist" list, and the guest user's "Shopping Cart".
-- **Styling:** A Tailwind CSS-based library (e.g., NativeWind, `twrnc`).
 - **Navigation:** React Navigation
-- **State Management:** Zustand or Redux Toolkit
+- **State Management:** Zustand
+- **UI Library:** Comprehensive e-commerce UI library with atomic, molecular, and organism components
+- **Theme System:** Complete Restyle theme with colors, typography, spacing, and animations
+- **Import Paths:** Must use configured path aliases (components/, screens/, services/, etc.)
 - **Push Notifications:** Explicitly **excluded** from the MVP.
+
+### 4.1. Component Requirements
+All components must be built using Shopify Restyle and follow these principles:
+- **Atomic Design:** Proper separation of atoms, molecules, and organisms
+- **Reusability:** Highly reusable and themable components
+- **TypeScript:** Full TypeScript support with proper interfaces
+- **Accessibility:** Proper accessibility labels and roles
+- **Performance:** Optimized for smooth animations and efficient rendering
