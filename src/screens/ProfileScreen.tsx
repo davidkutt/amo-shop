@@ -1,16 +1,13 @@
 import React from 'react';
-import { ScrollView, View, TouchableOpacity } from 'react-native';
-import { createRestyleComponent, spacing, SpacingProps, backgroundColor, BackgroundColorProps } from '@shopify/restyle';
-import { Theme } from 'theme';
+import { ScrollView, TouchableOpacity } from 'react-native';
+import { createBox } from '@shopify/restyle';
+import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
 import { Header } from 'components/organisms/Header';
 import { Icon } from 'components/atoms/Icon';
 import { NavigationProps } from 'navigation/types';
 
-const ProfileContainer = createRestyleComponent<SpacingProps<Theme> & BackgroundColorProps<Theme>>([
-  spacing,
-  backgroundColor,
-]);
+const Box = createBox<Theme>();
 
 const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
   const handleCartPress = () => {
@@ -34,34 +31,34 @@ const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
       id: 'account',
       title: 'Kontodetails',
       subtitle: 'Persönliche Informationen verwalten',
-      icon: 'user',
+      icon: 'user' as const,
       onPress: handleAccountPress,
     },
     {
       id: 'orders',
       title: 'Bestellverlauf',
       subtitle: 'Alle deine Bestellungen',
-      icon: 'package',
+      icon: 'file' as const,
       onPress: handleOrderHistoryPress,
     },
     {
       id: 'settings',
       title: 'Einstellungen',
       subtitle: 'App-Einstellungen anpassen',
-      icon: 'settings',
+      icon: 'settings' as const,
       onPress: () => {},
     },
     {
       id: 'help',
       title: 'Hilfe & Support',
       subtitle: 'Häufige Fragen und Kontakt',
-      icon: 'help-circle',
+      icon: 'help' as const,
       onPress: () => {},
     },
   ];
 
   return (
-    <ProfileContainer backgroundColor="background" flex={1}>
+    <Box backgroundColor="background" flex={1}>
       <Header
         back
         title="Profil"
@@ -71,9 +68,9 @@ const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
       />
       
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View paddingHorizontal="l" paddingVertical="xl">
+        <Box paddingHorizontal="l" paddingVertical="xl">
           {/* User Info Section */}
-          <View 
+          <Box 
             backgroundColor="cardBackground" 
             borderRadius="m" 
             padding="l" 
@@ -86,8 +83,8 @@ const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
               elevation: 3,
             }}
           >
-            <View flexDirection="row" alignItems="center" marginBottom="m">
-              <View
+            <Box flexDirection="row" alignItems="center" marginBottom="m">
+              <Box
                 backgroundColor="accent1"
                 borderRadius="full"
                 width={60}
@@ -97,51 +94,53 @@ const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
                 marginRight="m"
               >
                 <Icon name="user" size={24} color="white" />
-              </View>
-              <View flex={1}>
+              </Box>
+              <Box flex={1}>
                 <Text variant="subtitle" fontWeight="600">
                   Willkommen zurück!
                 </Text>
                 <Text variant="body" color="textSecondary">
                   Melde dich an oder erstelle ein Konto
                 </Text>
-              </View>
-            </View>
+              </Box>
+            </Box>
             <TouchableOpacity
-              backgroundColor="accent1"
-              borderRadius="m"
-              paddingVertical="m"
-              paddingHorizontal="l"
-              alignItems="center"
+              style={{
+                backgroundColor: '#fde047',
+                borderRadius: 12,
+                paddingVertical: 12,
+                paddingHorizontal: 24,
+                alignItems: 'center',
+              }}
               onPress={handleAccountPress}
             >
-              <Text variant="button" color="white" fontWeight="600">
+              <Text variant="body" color="textPrimary" fontWeight="600">
                 Anmelden / Registrieren
               </Text>
             </TouchableOpacity>
-          </View>
+          </Box>
 
           {/* Menu Items */}
-          <View>
+          <Box>
             {menuItems.map((item) => (
               <TouchableOpacity
                 key={item.id}
-                backgroundColor="cardBackground"
-                borderRadius="m"
-                padding="l"
-                marginBottom="m"
-                flexDirection="row"
-                alignItems="center"
-                onPress={item.onPress}
                 style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: 12,
+                  padding: 16,
+                  marginBottom: 12,
+                  flexDirection: 'row',
+                  alignItems: 'center',
                   shadowColor: '#000',
                   shadowOffset: { width: 0, height: 1 },
                   shadowOpacity: 0.05,
                   shadowRadius: 2,
                   elevation: 1,
                 }}
+                onPress={item.onPress}
               >
-                <View
+                <Box
                   backgroundColor="accent2"
                   borderRadius="m"
                   width={40}
@@ -151,22 +150,22 @@ const ProfileScreen: React.FC<NavigationProps> = ({ navigation }) => {
                   marginRight="m"
                 >
                   <Icon name={item.icon} size={20} color="accent1" />
-                </View>
-                <View flex={1}>
+                </Box>
+                <Box flex={1}>
                   <Text variant="subtitle" fontWeight="600" marginBottom="xs">
                     {item.title}
                   </Text>
                   <Text variant="small" color="textSecondary">
                     {item.subtitle}
                   </Text>
-                </View>
-                <Icon name="chevron-right" size={20} color="textSecondary" />
+                </Box>
+                <Icon name="arrow-right" size={20} color="textSecondary" />
               </TouchableOpacity>
             ))}
-          </View>
-        </View>
+          </Box>
+        </Box>
       </ScrollView>
-    </ProfileContainer>
+    </Box>
   );
 };
 

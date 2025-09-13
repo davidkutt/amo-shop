@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { ThemeProvider } from '@shopify/restyle';
-import theme from 'theme/index';
-
+import { useTheme } from '@shopify/restyle';
+import { Theme } from 'theme/index'; // Importing the TYPE is okay
 // Import atomic components
 import { Text, Button, Input, Icon } from 'components/atoms';
 
 // Import molecular components
-import { 
-  Badge, 
-  Breadcrumbs, 
-  CartItem, 
-  Checkbox, 
-  Chip, 
+import {
+  Badge,
+  Breadcrumbs,
+  CartItem,
+  Checkbox,
+  Chip,
   ColorSelector,
-  Counter, 
+  Counter,
   Disclosure,
   FilterButton,
   FormField,
-  RatingDisplay, 
+  RatingDisplay,
   SearchBar,
   Switch,
   TextInputField
 } from 'components/molecules';
 
 // Import organism components
-import { 
-  Header, 
-  ProductCard, 
-  CategoryCard, 
+import {
+  Header,
+  ProductCard,
+  CategoryCard,
   HorizontalProductCarousel,
   HeroCarousel,
   HeroSection,
@@ -40,6 +40,8 @@ import {
 } from 'components/organisms';
 
 const ComponentShowcaseScreen: React.FC = () => {
+  const theme = useTheme<Theme>(); // <--- Use the hook to get the theme
+
   const [searchText, setSearchText] = useState('');
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
   const [cartItemCount, setCartItemCount] = useState(3);
@@ -58,16 +60,16 @@ const ComponentShowcaseScreen: React.FC = () => {
   };
 
   const handleWishlistToggle = (productId: string) => {
-    setWishlistedProducts(prev => 
-      prev.includes(productId) 
+    setWishlistedProducts(prev =>
+      prev.includes(productId)
         ? prev.filter(id => id !== productId)
         : [...prev, productId]
     );
   };
 
   const handleAddToCart = (productId: string) => {
-    setCartProducts(prev => 
-      prev.includes(productId) 
+    setCartProducts(prev =>
+      prev.includes(productId)
         ? prev.filter(id => id !== productId)
         : [...prev, productId]
     );

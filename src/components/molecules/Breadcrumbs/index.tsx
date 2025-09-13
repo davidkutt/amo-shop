@@ -55,7 +55,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
           
           {index < crumbs.length - 1 && (
             <Icon
-              name="chevron-right"
+              name="arrow-right"
               size={16}
               color="textTertiary"
               marginHorizontal="s"

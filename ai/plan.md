@@ -35,22 +35,22 @@ This plan outlines the steps for building the "Herzenshund" React Native applica
         * - [x] `components/molecules/Switch` - Toggle switch component
         * - [x] `components/molecules/TextInputField` - Enhanced text input
     * - [ ] **1.4. Organism Components (Organisms):**
-        * - [ ] `components/organisms/Header` - Dynamic header with scroll animations
-        * - [ ] `components/organisms/HeroCarousel` - Full-width auto-playing carousel
-        * - [ ] `components/organisms/HeroSection` - Static welcome section
-        * - [ ] `components/organisms/ProductCard` - Product display with wishlist/cart
-        * - [ ] `components/organisms/CategoryCard` - Category navigation cards
-        * - [ ] `components/organisms/FilterBar` - Product filtering interface
-        * - [ ] `components/organisms/HorizontalProductCarousel` - Horizontal product scrolling
-        * - [ ] `components/organisms/PersonalityPacksCarousel` - Personality-based shopping
-        * - [ ] `components/organisms/RecentlyViewed` - Recently viewed products
-        * - [ ] `components/organisms/ShopTheLook` - Curated look showcase
-        * - [ ] `components/organisms/Tabbar` - Bottom navigation component
+        * - [x] `components/organisms/Header` - Dynamic header with scroll animations
+        * - [x] `components/organisms/HeroCarousel` - Full-width auto-playing carousel
+        * - [x] `components/organisms/HeroSection` - Static welcome section
+        * - [x] `components/organisms/ProductCard` - Product display with wishlist/cart
+        * - [x] `components/organisms/CategoryCard` - Category navigation cards
+        * - [x] `components/organisms/FilterBar` - Product filtering interface
+        * - [x] `components/organisms/HorizontalProductCarousel` - Horizontal product scrolling
+        * - [x] `components/organisms/PersonalityPacksCarousel` - Personality-based shopping
+        * - [x] `components/organisms/RecentlyViewed` - Recently viewed products
+        * - [x] `components/organisms/ShopTheLook` - Curated look showcase
+        * - [x] `components/organisms/Tabbar` - Bottom navigation component
     * - [ ] **1.5. Theme & Design System:**
-        * - [ ] Create comprehensive Restyle theme with all colors, typography, spacing
-        * - [ ] Implement "Warm & Elegant Minimalism" design system
-        * - [ ] Add animation utilities and haptic feedback
-        * - [ ] Create accessibility helpers and utilities
+        * - [x] Create comprehensive Restyle theme with all colors, typography, spacing
+        * - [x] Implement "Joyful Design System" with approachable, vibrant, soft, and optimistic feel
+        * - [x] Add animation utilities and haptic feedback
+        * - [x] Create accessibility helpers and utilities
 
 ---
 
@@ -58,14 +58,16 @@ This plan outlines the steps for building the "Herzenshund" React Native applica
 
 * **Goal:** Build the main application structure using the UI library components.
 * **Steps/Tasks:**
-    * - [ ] **2.1. Navigation Setup:**
-        * - [ ] Implement main Tab Navigator with German labels
-        * - [ ] Create placeholder screens for each tab (Start, Suche, Merkliste, Profil)
-        * - [ ] Set up stack navigators for each tab
-    * - [ ] **2.2. Shopify API Integration:**
-        * - [ ] Set up Shopify Storefront API client (GraphQL)
-        * - [ ] Create environment configuration for API credentials
-        * - [ ] Implement basic shop information fetching
+    * - [x] **2.1. Navigation Setup:**
+        * - [x] Implement main Tab Navigator with German labels
+        * - [x] Create placeholder screens for each tab (Start, Suche, Merkliste, Profil)
+        * - [x] Set up stack navigators for each tab
+        * - [x] Test and fix molecules and organisms
+        * - [X] Show our current organisms in the App and integrate them
+    * - [X] **2.2. Shopify API Integration:**
+        * - [X] Set up Shopify Storefront API client (GraphQL)
+        * - [X] Create environment configuration for API credentials
+        * - [X] Implement basic shop information fetching
     * - [ ] **2.3. Context & State Management:**
         * - [ ] Create `context/ScrollContext` for scroll-based animations
         * - [ ] Create `context/WishlistContext` for wishlist state
@@ -157,7 +159,7 @@ This plan outlines the steps for building the "Herzenshund" React Native applica
 ### **Styling & Theming**
 - **Shopify Restyle**: All styling must use Shopify Restyle instead of NativeWind
 - **Theme System**: Comprehensive theme with colors, typography, spacing, and animations
-- **Design System**: "Warm & Elegant Minimalism" with proper component variants
+- **Design System**: "Joyful Design System" with approachable, vibrant, soft, and optimistic feel
 
 ### **Import Paths**
 All imports must use the configured path aliases:

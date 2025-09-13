@@ -121,27 +121,118 @@ export default theme;
 
 ---
 
-## 4. Providing the Theme with Dark Mode
+## 4. Providing the Theme with ThemeProvider
+
+**CRITICAL: Always wrap your app with ThemeProvider in App.tsx:**
 
 ```tsx
-// app/_layout.tsx
+// App.tsx
 import { ThemeProvider } from '@shopify/restyle';
-import theme, { darkTheme } from '@/theme';
-import { useColorScheme } from 'react-native';
+import theme, { Theme } from '@/theme';
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+function App() {
   return (
-    <ThemeProvider theme={colorScheme === 'dark' ? darkTheme : theme}>
-      {/* Navigation and content */}
+    <ThemeProvider theme={theme}>
+      {/* Your app content */}
     </ThemeProvider>
   );
 }
 ```
 
+**Common Mistakes to Avoid:**
+- ❌ **NEVER import theme directly in components** - this breaks theming
+- ❌ **Don't use `import theme from 'theme/index'` in components**
+- ✅ **ALWAYS use `useTheme()` hook or `createBox`/`createRestyleComponent`**
+- ✅ **Access theme through the hook: `const theme = useTheme<Theme>()`**
+
 ---
 
-## 5. Creating a Reusable Text Component
+## 5. Correct Component Usage Patterns
+
+### 5.1. Using useTheme Hook (Recommended for complex components)
+
+```tsx
+// components/MyComponent.tsx
+import React from 'react';
+import { View } from 'react-native';
+import { useTheme } from '@shopify/restyle';
+import { Theme } from '../theme';
+
+const MyComponent = () => {
+  const theme = useTheme<Theme>();
+  
+  return (
+    <View style={{
+      backgroundColor: theme.colors.primary,
+      padding: theme.spacing.m,
+      borderRadius: theme.borderRadii.l,
+    }}>
+      {/* Component content */}
+    </View>
+  );
+};
+```
+
+### 5.2. Using createBox (Recommended for simple containers)
+
+```tsx
+// components/Container.tsx
+import { createBox } from '@shopify/restyle';
+import { Theme } from '../theme';
+
+const Box = createBox<Theme>();
+
+// Usage:
+<Box backgroundColor="primary" padding="m" borderRadius="l">
+  {/* Content */}
+</Box>
+```
+
+### 5.3. Using createRestyleComponent (For complex, reusable components)
+
+```tsx
+// components/Card.tsx
+import { createRestyleComponent, spacing, backgroundColor, borderRadii } from '@shopify/restyle';
+import { View } from 'react-native';
+import { Theme } from '../theme';
+
+const Card = createRestyleComponent([spacing, backgroundColor, borderRadii], View);
+
+// Usage:
+<Card backgroundColor="cardBackground" padding="m" borderRadius="l">
+  {/* Card content */}
+</Card>
+```
+
+### 5.4. What NOT to Do
+
+```tsx
+// ❌ WRONG: Importing theme directly
+import theme from '../theme'; // This breaks theming!
+
+const BadComponent = () => {
+  return (
+    <View style={{
+      backgroundColor: theme.colors.primary, // ❌ Won't update with theme changes
+    }}>
+    </View>
+  );
+};
+
+// ❌ WRONG: Using StyleSheet instead of Restyle
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#93c5fd', // ❌ Hardcoded colors
+    padding: 16, // ❌ Hardcoded spacing
+  },
+});
+```
+
+---
+
+## 6. Creating a Reusable Text Component
 
 ```tsx
 // components/Text.tsx
@@ -170,7 +261,7 @@ export default function HomeScreen() {
 
 ---
 
-## 6. Skeleton Loader with Animation
+## 7. Skeleton Loader with Animation
 
 ```tsx
 // components/SkeletonLoader.tsx

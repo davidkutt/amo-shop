@@ -48,7 +48,7 @@ export const Disclosure: React.FC<DisclosureProps> = ({
           flexDirection="row" 
           justifyContent="space-between" 
           alignItems="center"
-          paddingVertical="sm"
+          paddingVertical="s"
         >
           <Text variant="subtitle" flex={1}>
             {title}

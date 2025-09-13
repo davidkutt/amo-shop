@@ -9,6 +9,7 @@ export { Counter } from './Counter';
 export { Disclosure } from './Disclosure';
 export { FilterButton } from './FilterButton';
 export { FormField } from './FormField';
+export { PersonalizationPreview } from './PersonalizationPreview';
 export { RatingDisplay } from './RatingDisplay';
 export { SearchBar } from './SearchBar';
 export { Switch } from './Switch';

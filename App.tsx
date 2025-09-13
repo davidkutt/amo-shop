@@ -8,31 +8,55 @@
 import React from 'react';
 import { StatusBar, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ApolloProvider } from '@apollo/client';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import "./global.css"
-import { client } from 'services/shopifyService';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import AppNavigator from 'navigation/AppNavigator';
+import { createBox, ThemeProvider } from '@shopify/restyle';
+import theme, { Theme } from 'theme/index'; // <-- Go back to this
+
+import { useTheme } from '@shopify/restyle';
+
+const Box = createBox<Theme>();
 
 function AppContent() {
+
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1, paddingTop: insets.top, paddingLeft: insets.left, paddingRight: insets.right, backgroundColor: '#f8fafc' }}>
+    <Box
+      flex={1}
+      backgroundColor="background"
+      paddingTop={{
+        phone: 'm',
+        tablet: 'l',
+      }}
+      paddingLeft={{
+        phone: insets.left > 0 ? 'm' : 's',
+        tablet: 'l',
+      }}
+      paddingRight={{
+        phone: insets.right > 0 ? 'm' : 's',
+        tablet: 'l',
+      }}
+    >
       <AppNavigator />
-    </View>
+    </Box>
   );
 }
 
 function App() {
+  // const theme = useTheme<Theme>();
   return (
     <SafeAreaProvider>
-      <ApolloProvider client={client}>
+      {/* Use the hardcoded testTheme here */}
+      <ThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
           <StatusBar barStyle="dark-content" />
           <AppContent />
         </GestureHandlerRootView>
-      </ApolloProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

@@ -1,20 +1,42 @@
-import React from 'react';
-import { ScrollView, View } from 'react-native';
-import { createRestyleComponent, spacing, SpacingProps, backgroundColor, BackgroundColorProps } from '@shopify/restyle';
-import { Theme } from 'theme';
+import React, { useState, useEffect } from 'react';
+import { ScrollView, ActivityIndicator, Alert } from 'react-native';
+import { createBox } from '@shopify/restyle';
+import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
+import { Button } from 'components/atoms/Button';
+import { Icon } from 'components/atoms/Icon';
 import { Header } from 'components/organisms/Header';
 import { HorizontalProductCarousel } from 'components/organisms/HorizontalProductCarousel';
 import { NavigationProps } from 'navigation/types';
+import { useWishlist } from 'hooks/useWishlist';
+import { useCart } from 'hooks/useCart';
 
-const WishlistContainer = createRestyleComponent<SpacingProps<Theme> & BackgroundColorProps<Theme>>([
-  spacing,
-  backgroundColor,
-]);
+const Box = createBox<Theme>();
 
 const WishlistScreen: React.FC<NavigationProps> = ({ navigation }) => {
-  const handleProductPress = (productId: string) => {
-    navigation.navigate('ProductDetail', { productId });
+  // State management
+  const { 
+    items: wishlistItems, 
+    loading: wishlistLoading, 
+    error: wishlistError,
+    loadWishlist,
+    removeFromWishlist,
+    isEmpty 
+  } = useWishlist();
+  
+  const { 
+    itemCount: cartItemCount,
+    addItem: addToCart,
+    isInCart 
+  } = useCart();
+
+  // Load wishlist on component mount
+  useEffect(() => {
+    loadWishlist();
+  }, [loadWishlist]);
+
+  const handleProductPress = (product: any) => {
+    navigation.navigate('ProductDetail', { productId: product.id });
   };
 
   const handleCartPress = () => {
@@ -25,68 +47,117 @@ const WishlistScreen: React.FC<NavigationProps> = ({ navigation }) => {
     navigation.goBack();
   };
 
-  // Mock wishlist data
-  const wishlistProducts = [
-    {
-      id: '1',
-      name: 'Personalized Pet Collar',
-      price: 29.99,
-      originalPrice: 39.99,
-      image: 'https://via.placeholder.com/200x200',
-      rating: 4.5,
-      reviewCount: 128,
-      isWishlisted: true,
-      onPress: () => handleProductPress('1'),
-      onWishlistToggle: () => {},
-      onAddToCart: () => {},
-    },
-    {
-      id: '2',
-      name: 'Custom Pet Bowl',
-      price: 24.99,
-      originalPrice: 29.99,
-      image: 'https://via.placeholder.com/200x200',
-      rating: 4.8,
-      reviewCount: 95,
-      isWishlisted: true,
-      onPress: () => handleProductPress('2'),
-      onWishlistToggle: () => {},
-      onAddToCart: () => {},
-    },
-  ];
+  const handleWishlistToggle = async (productId: string) => {
+    try {
+      await removeFromWishlist(productId);
+    } catch (error) {
+      console.error('Error removing from wishlist:', error);
+      Alert.alert('Fehler', 'Produkt konnte nicht aus der Merkliste entfernt werden.');
+    }
+  };
+
+  const handleAddToCart = async (productId: string) => {
+    try {
+      const product = wishlistItems.find(p => p.id === productId);
+      if (product) {
+        await addToCart({
+          product,
+          quantity: 1,
+        });
+        Alert.alert('Erfolg', 'Produkt wurde zum Warenkorb hinzugefügt!');
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      Alert.alert('Fehler', 'Produkt konnte nicht zum Warenkorb hinzugefügt werden.');
+    }
+  };
+
+  // Helper function to convert our Product type to component's expected type
+  const mapProductForCarousel = (product: any) => ({
+    id: product.id,
+    handle: product.handle,
+    variantId: product.variantId,
+    name: product.name,
+    price: product.price,
+    imageUrl: product.imageUrl,
+    rating: product.rating || 4.5,
+    reviewCount: product.reviewCount || 0,
+  });
+
+  if (wishlistLoading) {
+    return (
+      <Box backgroundColor="background" flex={1} justifyContent="center" alignItems="center">
+        <ActivityIndicator size="large" color="#93c5fd" />
+        <Text variant="body" marginTop="m" color="textSecondary">
+          Merkliste wird geladen...
+        </Text>
+      </Box>
+    );
+  }
+
+  if (wishlistError) {
+    return (
+      <Box backgroundColor="background" flex={1} justifyContent="center" alignItems="center" paddingHorizontal="l">
+        <Icon name="alert" size={64} color="#ef4444" />
+        <Text variant="title" marginTop="l" marginBottom="s" textAlign="center">
+          Fehler beim Laden
+        </Text>
+        <Text variant="body" color="textSecondary" textAlign="center" marginBottom="xl">
+          {wishlistError}
+        </Text>
+        <Button
+          variant="primary"
+          title="Erneut versuchen"
+          onPress={loadWishlist}
+        />
+      </Box>
+    );
+  }
 
   return (
-    <WishlistContainer backgroundColor="background" flex={1}>
+    <Box backgroundColor="background" flex={1}>
       <Header
         back
         title="Merkliste"
         onBackPress={handleBackPress}
         onCartPress={handleCartPress}
-        cartItemCount={3}
+        cartItemCount={cartItemCount}
       />
       
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View paddingHorizontal="l" paddingVertical="xl">
+        <Box paddingHorizontal="l" paddingVertical="xl">
           <Text variant="title" marginBottom="m">
             Meine Wunschliste
           </Text>
-          {wishlistProducts.length > 0 ? (
+          {!isEmpty ? (
             <HorizontalProductCarousel
               title="Gespeicherte Produkte"
-              products={wishlistProducts}
-              onViewAll={() => {}}
+              products={wishlistItems.map(mapProductForCarousel)}
+              onProductPress={handleProductPress}
+              onWishlistToggle={handleWishlistToggle}
+              onAddToCart={handleAddToCart}
+              wishlistedProducts={wishlistItems.map(p => p.id)}
+              cartProducts={wishlistItems.filter(p => isInCart(p.id)).map(p => p.id)}
             />
           ) : (
-            <View alignItems="center" paddingVertical="xxl">
-              <Text variant="body" color="textSecondary" textAlign="center">
-                Deine Merkliste ist noch leer.{'\n'}
-                Entdecke tolle Produkte und füge sie hinzu!
+            <Box alignItems="center" paddingVertical="xxl">
+              <Icon name="heart" size={64} color="#d1d5db" />
+              <Text variant="title" marginTop="l" marginBottom="s" textAlign="center">
+                Deine Merkliste ist leer
               </Text>
-            </View>
+              <Text variant="body" color="textSecondary" textAlign="center" marginBottom="xl">
+                Entdecke tolle Produkte und füge sie zu deiner Merkliste hinzu!
+              </Text>
+              <Button
+                variant="primary"
+                title="Produkte entdecken"
+                onPress={() => navigation.navigate('Home')}
+              />
+            </Box>
           )}
-        </View>
+        </Box>
       </ScrollView>
-    </WishlistContainer>
+    </Box>
   );
 };
 

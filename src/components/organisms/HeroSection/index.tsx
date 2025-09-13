@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, ImageBackground } from 'react-native';
-import { createRestyleComponent, createVariant, spacing, SpacingProps } from '@shopify/restyle';
+import { createBox, spacing, SpacingProps } from '@shopify/restyle';
 import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
 import { Button } from 'components/atoms/Button';
 
-const HeroSectionContainer = createRestyleComponent<SpacingProps<Theme>, View>([spacing], View);
+const HeroSectionContainer = createBox<Theme>();
 
 export interface HeroSectionProps {
   backgroundImage?: string;
@@ -49,7 +49,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         variant="title"
         color="white"
         textAlign={textAlign}
-        marginBottom="sm"
+        marginBottom="s"
         style={{ textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 3 }}
       >
         {title}
@@ -60,7 +60,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           variant="subtitle"
           color="white"
           textAlign={textAlign}
-          marginBottom="md"
+          marginBottom="m"
           style={{ textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 3 }}
         >
           {subtitle}
@@ -72,7 +72,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           variant="body"
           color="white"
           textAlign={textAlign}
-          marginBottom="lg"
+          marginBottom="l"
           style={{ textShadowColor: 'rgba(0, 0, 0, 0.5)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 3 }}
         >
           {description}
@@ -143,4 +143,3 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 };
 
 export default HeroSection;
-export type { HeroSectionProps };

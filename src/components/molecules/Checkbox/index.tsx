@@ -8,6 +8,7 @@ import {
   layout, LayoutProps,
 } from '@shopify/restyle';
 import { Theme } from 'theme/index';
+import { useTheme } from '@shopify/restyle';
 import { Text } from 'components/atoms/Text';
 import { Icon } from 'components/atoms/Icon';
 
@@ -35,6 +36,14 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   invalid = false,
   ...rest
 }) => {
+  const theme = useTheme<Theme>();
+  const borderColor = invalid
+    ? theme.colors.error
+    : value
+    ? theme.colors.primary
+    : theme.colors.gray300;
+  const backgroundColor = value ? theme.colors.primary : theme.colors.transparent;
+
   return (
     <View flexDirection="row" alignItems="center" {...rest}>
       <TouchableOpacity
@@ -44,8 +53,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           height: 20,
           borderRadius: 4,
           borderWidth: 2,
-          borderColor: invalid ? '#ef4444' : value ? '#93c5fd' : '#d1d5db',
-          backgroundColor: value ? '#93c5fd' : 'transparent',
+          borderColor,
+          backgroundColor,
           justifyContent: 'center',
           alignItems: 'center',
           marginRight: label ? 8 : 0,

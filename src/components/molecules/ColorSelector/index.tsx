@@ -3,6 +3,7 @@ import { TouchableOpacity, View } from 'react-native';
 import { createRestyleComponent, createVariant, spacing, SpacingProps, VariantProps } from '@shopify/restyle';
 import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
+import { useTheme } from '@shopify/restyle';
 
 const colorSelectorVariant = createVariant<Theme, 'colorSelectorVariants'>({
   themeKey: 'colorSelectorVariants',
@@ -30,6 +31,7 @@ export const ColorSelector: React.FC<ColorSelectorProps> = ({
   size = 'md',
   showLabels = false,
 }) => {
+  const theme = useTheme<Theme>();
   const getSize = () => {
     switch (size) {
       case 'sm': return 24;
@@ -50,7 +52,7 @@ export const ColorSelector: React.FC<ColorSelectorProps> = ({
               borderRadius: getSize() / 2,
               backgroundColor: color,
               borderWidth: selectedColor === color ? 3 : 1,
-              borderColor: selectedColor === color ? '#000' : '#E5E5E5',
+              borderColor: selectedColor === color ? theme.colors.black : theme.colors.gray200,
             }}
           />
           {showLabels && (

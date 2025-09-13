@@ -1,15 +1,12 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
-import { createRestyleComponent, spacing, SpacingProps, backgroundColor, BackgroundColorProps } from '@shopify/restyle';
-import { Theme } from 'theme';
+import { ScrollView } from 'react-native';
+import { createBox } from '@shopify/restyle';
+import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
 import { Header } from 'components/organisms/Header';
 import { NavigationProps } from 'navigation/types';
 
-const CategoryProductsContainer = createRestyleComponent<SpacingProps<Theme> & BackgroundColorProps<Theme>>([
-  spacing,
-  backgroundColor,
-]);
+const Box = createBox<Theme>();
 
 const CategoryProductsScreen: React.FC<NavigationProps> = ({ navigation, route }) => {
   const { categoryId, categoryName } = route.params as { categoryId: string; categoryName: string };
@@ -23,7 +20,7 @@ const CategoryProductsScreen: React.FC<NavigationProps> = ({ navigation, route }
   };
 
   return (
-    <CategoryProductsContainer backgroundColor="background" flex={1}>
+    <Box backgroundColor="background" flex={1}>
       <Header
         back
         title={categoryName}
@@ -33,16 +30,16 @@ const CategoryProductsScreen: React.FC<NavigationProps> = ({ navigation, route }
       />
       
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View paddingHorizontal="l" paddingVertical="xl">
+        <Box paddingHorizontal="l" paddingVertical="xl">
           <Text variant="title" marginBottom="m">
             {categoryName}
           </Text>
           <Text variant="body" color="textSecondary">
-            Hier werden die Produkte der Kategorie {categoryId} angezeigt.
+            Products for {categoryName} will be displayed here.
           </Text>
-        </View>
+        </Box>
       </ScrollView>
-    </CategoryProductsContainer>
+    </Box>
   );
 };
 

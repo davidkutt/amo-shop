@@ -6,13 +6,13 @@ const palette = {
   primary: '#93c5fd', // Soft Blue
   background: '#f8fafc', // Light Off-White
   text: '#334155', // Soft Charcoal
-  
+
   // Accent colors
   accent1: '#fde047', // Cheerful Yellow
   accent2: '#f9a8d4', // Playful Pink
   accent3: '#5eead4', // Fresh Green
   accent4: '#fed7aa', // Warm Peach
-  
+
   // Additional colors
   white: '#FFFFFF',
   black: '#000000',
@@ -26,7 +26,7 @@ const palette = {
   gray700: '#374151',
   gray800: '#1f2937',
   gray900: '#111827',
-  
+
   // Status colors
   success: '#10b981',
   warning: '#f59e0b',
@@ -40,17 +40,18 @@ const theme = createTheme({
     primary: palette.primary,
     background: palette.background,
     text: palette.text,
-    
+
     // Accent colors
     accent1: palette.accent1,
     accent2: palette.accent2,
     accent3: palette.accent3,
     accent4: palette.accent4,
-    
+
     // Base colors
     white: palette.white,
     black: palette.black,
-    
+    transparent: 'transparent',
+
     // Gray scale
     gray50: palette.gray50,
     gray100: palette.gray100,
@@ -62,13 +63,13 @@ const theme = createTheme({
     gray700: palette.gray700,
     gray800: palette.gray800,
     gray900: palette.gray900,
-    
+
     // Status colors
     success: palette.success,
     warning: palette.warning,
     error: palette.error,
     info: palette.info,
-    
+
     // Semantic colors
     mainBackground: palette.background,
     cardBackground: palette.white,
@@ -78,17 +79,21 @@ const theme = createTheme({
     border: palette.gray200,
     shadow: palette.black,
   },
-  
+
   spacing: {
     xs: 4,
     s: 8,
     m: 16,
     l: 24,
+    lg: 24,
     xl: 32,
     xxl: 48,
     xxxl: 64,
   },
-  
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
   borderRadii: {
     none: 0,
     xs: 2,
@@ -100,7 +105,7 @@ const theme = createTheme({
     xxxl: 32,
     full: 9999,
   },
-  
+
   textVariants: {
     title: {
       fontFamily: 'Nunito-Bold',
@@ -142,7 +147,7 @@ const theme = createTheme({
       color: 'textPrimary',
     },
   },
-  
+
   buttonVariants: {
     primary: {
       backgroundColor: 'primary',
@@ -178,7 +183,7 @@ const theme = createTheme({
       justifyContent: 'center',
     },
   },
-  
+
   cardVariants: {
     elevated: {
       backgroundColor: 'cardBackground',
@@ -203,7 +208,7 @@ const theme = createTheme({
       padding: 'm',
     },
   },
-  
+
   badgeVariants: {
     standard: {
       backgroundColor: 'accent1',
@@ -230,7 +235,7 @@ const theme = createTheme({
       paddingHorizontal: 'xs',
     },
   },
-  
+
   chipVariants: {
     default: {
       backgroundColor: 'gray100',
@@ -257,7 +262,7 @@ const theme = createTheme({
       justifyContent: 'center',
     },
   },
-  
+
   colorSelectorVariants: {
     default: {
       flexDirection: 'row',
@@ -268,7 +273,7 @@ const theme = createTheme({
       alignItems: 'center',
     },
   },
-  
+
   disclosureVariants: {
     default: {
       backgroundColor: 'transparent',
@@ -284,7 +289,7 @@ const theme = createTheme({
       backgroundColor: 'transparent',
     },
   },
-  
+
   filterButtonVariants: {
     default: {
       backgroundColor: 'gray100',
@@ -313,7 +318,7 @@ const theme = createTheme({
       borderColor: 'border',
     },
   },
-  
+
   formFieldVariants: {
     default: {
       backgroundColor: 'transparent',
@@ -326,7 +331,7 @@ const theme = createTheme({
       backgroundColor: 'transparent',
     },
   },
-  
+
   switchVariants: {
     default: {
       backgroundColor: 'transparent',
@@ -335,7 +340,7 @@ const theme = createTheme({
       backgroundColor: 'transparent',
     },
   },
-  
+
   textInputFieldVariants: {
     default: {
       backgroundColor: 'transparent',

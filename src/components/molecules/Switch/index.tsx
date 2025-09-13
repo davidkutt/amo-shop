@@ -3,6 +3,7 @@ import { TouchableOpacity, Animated } from 'react-native';
 import { createRestyleComponent, createVariant, spacing, SpacingProps, VariantProps } from '@shopify/restyle';
 import { Theme } from 'theme/index';
 import { Text } from 'components/atoms/Text';
+import { useTheme } from '@shopify/restyle';
 
 const switchVariant = createVariant<Theme, 'switchVariants'>({
   themeKey: 'switchVariants',
@@ -28,6 +29,8 @@ export const Switch: React.FC<SwitchProps> = ({
   label,
   size = 'md',
 }) => {
+  const theme = useTheme<Theme>();
+
   const getSwitchSize = () => {
     switch (size) {
       case 'sm': return { width: 36, height: 20, thumbSize: 16 };
@@ -43,8 +46,7 @@ export const Switch: React.FC<SwitchProps> = ({
       variant="default" 
       flexDirection="row" 
       alignItems="center" 
-      gap="sm"
-      opacity={disabled ? 0.5 : 1}
+      marginRight="s"
     >
       {label && (
         <Text variant="body" color="textPrimary" flex={1}>
@@ -59,7 +61,7 @@ export const Switch: React.FC<SwitchProps> = ({
           width: switchSize.width,
           height: switchSize.height,
           borderRadius: switchSize.height / 2,
-          backgroundColor: value ? '#4F46E5' : '#E5E7EB',
+          backgroundColor: value ? theme.colors.primary : theme.colors.gray200,
           justifyContent: 'center',
           paddingHorizontal: 2,
         }}
@@ -69,7 +71,7 @@ export const Switch: React.FC<SwitchProps> = ({
             width: switchSize.thumbSize,
             height: switchSize.thumbSize,
             borderRadius: switchSize.thumbSize / 2,
-            backgroundColor: 'white',
+            backgroundColor: theme.colors.white,
             transform: [{
               translateX: value ? switchSize.width - switchSize.thumbSize - 2 : 0
             }],
@@ -79,5 +81,3 @@ export const Switch: React.FC<SwitchProps> = ({
     </SwitchContainer>
   );
 };
-
-export type { SwitchProps };

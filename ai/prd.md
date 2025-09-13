@@ -60,6 +60,34 @@ The primary font will be **Nunito** (or a similar rounded sans-serif) to feel mo
 ### 2.6. Styling Requirements
 **CRITICAL: Shopify Restyle MUST ALWAYS be used instead of regular React Native StyleSheet styling throughout the entire application.** This ensures consistency with the design system and enables proper theming. All components should use Restyle's `createRestyleComponent` and theme-based styling rather than StyleSheet.create().
 
+**CRITICAL: ThemeProvider Setup:**
+- The `ThemeProvider` from `@shopify/restyle` MUST be set up in `App.tsx` to wrap the entire application
+- All components MUST access the theme through the `useTheme()` hook or by using `createBox`/`createRestyleComponent`
+- NEVER import the theme directly from `theme/index.ts` in components - use `useTheme()` hook instead
+
+**Correct Restyle Usage Pattern:**
+```tsx
+// ✅ CORRECT: Use useTheme hook in components
+import { useTheme } from '@shopify/restyle';
+import { Theme } from 'theme/index';
+
+const MyComponent = () => {
+  const theme = useTheme<Theme>();
+  // Access theme values: theme.colors.primary, theme.spacing.m, etc.
+};
+
+// ✅ CORRECT: Use createBox for simple containers
+import { createBox } from '@shopify/restyle';
+const Box = createBox<Theme>();
+
+// ✅ CORRECT: Use createRestyleComponent for complex components
+import { createRestyleComponent, spacing, backgroundColor } from '@shopify/restyle';
+const MyRestyleComponent = createRestyleComponent([spacing, backgroundColor], View);
+
+// ❌ WRONG: Don't import theme directly in components
+import theme from 'theme/index'; // This breaks theming!
+```
+
 ### 2.7. Import Path Requirements
 **CRITICAL: Always use the configured path aliases from babel.config.js instead of relative imports.** This ensures better maintainability and consistency across the codebase. Use the following path aliases:
 

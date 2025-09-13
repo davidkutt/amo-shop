@@ -10,6 +10,7 @@ import {
   layout, LayoutProps,
 } from '@shopify/restyle';
 import { Theme } from 'theme';
+import { useTheme } from '@shopify/restyle';
 import { Text } from 'components/atoms/Text';
 import { Icon } from 'components/atoms/Icon';
 
@@ -55,6 +56,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   variant = 'elevated',
   ...rest
 }) => {
+  const theme = useTheme<Theme>();
+  
   const formatPrice = (price: string) => {
     // Convert "84.90 EUR" to "84,90 €" (German format)
     const [amount, currency] = price.split(' ');
@@ -89,13 +92,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               position: 'absolute',
               top: 8,
               right: 8,
-              backgroundColor: 'white',
+              backgroundColor: theme.colors.white,
               borderRadius: 20,
               width: 40,
               height: 40,
               justifyContent: 'center',
               alignItems: 'center',
-              shadowColor: '#000',
+              shadowColor: theme.colors.shadow,
               shadowOffset: { width: 0, height: 2 },
               shadowOpacity: 0.1,
               shadowRadius: 4,
@@ -147,7 +150,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <TouchableOpacity
             onPress={onAddToCart}
             style={{
-              backgroundColor: isInCart ? 'gray' : '#93c5fd',
+              backgroundColor: isInCart ? theme.colors.gray400 : theme.colors.primary,
               borderRadius: 20,
               paddingHorizontal: 16,
               paddingVertical: 8,

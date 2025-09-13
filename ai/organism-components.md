@@ -90,14 +90,14 @@ type HeroSectionProps = {
 
 ## ProductCard
 
-**Purpose**: A product card redesigned in "Warm & Elegant Minimalism" style with wishlist and cart functionality.
+**Purpose**: A product card redesigned in "Joyful Design System" style with wishlist and cart functionality.
 
 **Key Features**:
 - German locale price formatting (comma decimal separator)
 - Wishlist toggle functionality
 - Add to cart functionality
 - High-fidelity image display
-- Elegant typography with serif fonts
+- Joyful typography with rounded fonts
 - Touch interactions for product details
 
 **Props**:
@@ -321,10 +321,10 @@ type Look = {
 
 ## Design System Integration
 
-All organism components follow the "Warm & Elegant Minimalism" design system:
+All organism components follow the "Joyful Design System":
 
 - **Colors**: Use design system colors (`text-text`, `background`, `primary`)
-- **Typography**: Elegant serif fonts for titles, clean sans-serif for body text
+- **Typography**: Joyful rounded fonts for titles, clean sans-serif for body text
 - **Spacing**: Consistent padding and margins using Tailwind classes
 - **Animations**: Smooth spring animations for enhanced user experience
 - **Accessibility**: Proper accessibility labels and roles

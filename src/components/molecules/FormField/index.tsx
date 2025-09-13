@@ -33,7 +33,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   variant = 'default',
 }) => {
   return (
-    <FormFieldContainer variant={variant} marginBottom="md">
+    <FormFieldContainer variant={variant} marginBottom="m">
       {label && (
         <FormFieldLabel marginBottom="xs">
           <Text variant="body" color="textPrimary">

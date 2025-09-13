@@ -90,7 +90,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       {searchText.length > 0 && (
         <TouchableOpacity onPress={handleClear} marginLeft="s">
           <Icon
-            name="x"
+            name="close"
             size={18}
             color="textTertiary"
           />

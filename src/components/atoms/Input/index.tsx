@@ -10,6 +10,10 @@ import {
   BackgroundColorProps,
   layout,
   LayoutProps,
+  typography,
+  TypographyProps,
+  color,
+  ColorProps,
 } from '@shopify/restyle';
 import { Theme } from 'theme/index';
 
@@ -17,6 +21,8 @@ type InputProps = SpacingProps<Theme> &
   BorderProps<Theme> &
   BackgroundColorProps<Theme> &
   LayoutProps<Theme> &
+  TypographyProps<Theme> &
+  ColorProps<Theme> &
   TextInputProps & {
     variant?: 'default' | 'error';
     className?: string;
@@ -27,7 +33,9 @@ const InputBase = createRestyleComponent<InputProps, Theme>([
   border,
   backgroundColor,
   layout,
-]);
+  typography,
+  color,
+], TextInput);
 
 export const Input: React.FC<InputProps> = ({
   variant = 'default',
@@ -38,12 +46,12 @@ export const Input: React.FC<InputProps> = ({
     switch (variant) {
       case 'error':
         return {
-          borderColor: 'error',
+          borderColor: 'error' as keyof Theme['colors'],
           borderWidth: 1,
         };
       default:
         return {
-          borderColor: 'border',
+          borderColor: 'border' as keyof Theme['colors'],
           borderWidth: 1,
         };
     }
